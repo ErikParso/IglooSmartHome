@@ -21,8 +21,6 @@ namespace IglooSmartHome.Models
 
         public IglooSmartHomeContext(): base(connectionStringName) { }
 
-        public DbSet<Contact> Contacts { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(

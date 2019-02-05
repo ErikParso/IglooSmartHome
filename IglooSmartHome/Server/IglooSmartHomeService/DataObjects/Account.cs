@@ -7,7 +7,5 @@ namespace IglooSmartHome.DataObjects
     {
         public string PhotoUrl { get; set; }
         public string Name { get; set; }
-
-        public ICollection<Contact> Contacts { get; set; }
     }
 }
