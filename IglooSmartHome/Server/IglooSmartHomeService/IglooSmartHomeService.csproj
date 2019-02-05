@@ -229,7 +229,6 @@
   <ItemGroup>
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\Startup.Swagger.cs" />
-    <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\CustomLoginController.cs" />
     <Compile Include="Controllers\CustomRegistrationController.cs" />
