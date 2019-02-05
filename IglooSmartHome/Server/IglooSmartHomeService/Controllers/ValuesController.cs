@@ -1,32 +1,55 @@
-﻿using System.Web.Http;
-using System.Web.Http.Tracing;
-using Microsoft.Azure.Mobile.Server;
+﻿using IglooSmartHome.Models;
 using Microsoft.Azure.Mobile.Server.Config;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Web.Http;
 
-namespace IglooSmartHomeService.Controllers
+namespace IglooSmartHome.Controllers
 {
-    // Use the MobileAppController attribute for each ApiController you want to use  
-    // from your mobile clients 
+    /// <summary>
+    /// ValuesController.
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     [MobileAppController]
+    [Authorize]
     public class ValuesController : ApiController
     {
-        // GET api/values
-        public string Get()
-        {
-            MobileAppSettingsDictionary settings = this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
-            ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
+        private readonly IglooSmartHomeContext _context;
 
-            string host = settings.HostName ?? "localhost";
-            string greeting = "Hello from " + host;
-            
-            traceWriter.Info(greeting);
-            return greeting;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValuesController"/> class.
+        /// </summary>
+        /// <param name="balanseContext">The balanse context.</param>
+        public ValuesController(IglooSmartHomeContext balanseContext)
+        {
+            _context = balanseContext;
         }
 
-        // POST api/values
+        /// <summary>
+        /// Gets this instance.
+        /// </summary>
+        /// <returns>value</returns>
+        [HttpGet]
+        public string Get()
+        {
+            return GetUserId(User) + " via Get";
+        }
+
+        /// <summary>
+        /// Posts this instance.
+        /// </summary>
+        /// <returns>value</returns>
+        [HttpPost]
         public string Post()
         {
-            return "Hello World!";
+            return GetUserId(User) + " via Post";
+        }
+
+        private string GetUserId(IPrincipal user)
+        {
+            ClaimsPrincipal claimsUser = (ClaimsPrincipal)user;
+            string sid = claimsUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return sid;
         }
     }
 }
