@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using Microsoft.WindowsAzure.MobileServices;
+using Autofac;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,7 +29,12 @@ namespace UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new IglooSmartHome.App());
+            LoadApplication(new IglooSmartHome.App(registerPlatformspecific));
+        }
+
+        private void registerPlatformspecific(ContainerBuilder obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

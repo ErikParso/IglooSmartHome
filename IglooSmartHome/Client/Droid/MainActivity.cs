@@ -1,40 +1,39 @@
-﻿using System;
-
-using Android.App;
-using Android.Content;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-
+using Autofac;
 using Microsoft.WindowsAzure.MobileServices;
-
+using Xamarin.Auth;
+using Xamarin.Droid.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 namespace IglooSmartHome.Droid
 {
-	[Activity (Label = "IglooSmartHome.Droid",
-		Icon = "@drawable/icon",
-		MainLauncher = true,
-		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
-		Theme = "@android:style/Theme.Holo.Light")]
+    [Activity(Theme = "@style/AppTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : FormsApplicationActivity
 	{
-		protected override void OnCreate (Bundle bundle)
+        protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
-			// Initialize Azure Mobile Apps
 			CurrentPlatform.Init();
-
-			// Initialize Xamarin Forms
 			Forms.Init (this, bundle);
 
-			// Load the main application
-			LoadApplication (new App ());
+            App app = new App(RegisterPlatfirmSpecific);
+            LoadApplication (app);
 		}
-	}
+
+        private void RegisterPlatfirmSpecific(ContainerBuilder builder)
+        {
+            builder.RegisterContext(this);
+            builder.RegisterAccountStore(AccountStore.Create(this, "pwd"));
+            builder.RegisterAccountStoreService("igloosmarthome");
+            builder.RegisterAuthenticationService();
+            builder.RegisterCustomLoginService();
+            builder.RegisterProviderLoginService("igloosmarthome");
+            builder.RegisterVerificationService();
+            builder.RegisterAccountInformationService();
+        }
+    }
 }
 

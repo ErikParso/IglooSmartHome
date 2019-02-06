@@ -10,6 +10,7 @@ using Microsoft.WindowsAzure.MobileServices;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using Autofac;
 
 namespace IglooSmartHome.iOS
 {
@@ -24,10 +25,15 @@ namespace IglooSmartHome.iOS
 			// Initialize Xamarin Forms
 			Forms.Init();
 
-			LoadApplication(new App ());
+			LoadApplication(new App (registerPlatformSpecific));
 
 			return base.FinishedLaunching(app, options);
 		}
-	}
+
+        private void registerPlatformSpecific(ContainerBuilder obj)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
 

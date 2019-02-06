@@ -4,13 +4,58 @@
         <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Forms" Version="3.1.0.637273" />
-        <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.1.1" />
-        <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.1.1" />
+        <PackageReference Include="Autofac" Version="4.8.1" />
+        <PackageReference Include="Igloo.Xamarin.Forms.Utils" Version="1.0.0" />
+        <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+        <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.0.2" />
+        <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.0.2" />
     </ItemGroup>
     <ItemGroup>
+      <Compile Update="View\MasterDetail\DetailView.xaml.cs">
+        <DependentUpon>DetailView.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="View\MasterDetail\MasterView.xaml.cs">
+        <DependentUpon>MasterView.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="View\MasterDetail\MasterDetailView.xaml.cs">
+        <DependentUpon>MasterDetailView.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Update="Themes\White.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
         <EmbeddedResource Update="TodoList.xaml">
             <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
         </EmbeddedResource>
+        <EmbeddedResource Update="View\LoginPage.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="View\MasterDetail\MasterDetailView.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="View\MasterDetail\DetailView.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="View\MasterDetail\MasterView.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+      <None Update="Themes\White.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </None>
+      <None Update="View\LoginPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </None>
+      <None Update="View\MasterDetail\DetailView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </None>
+      <None Update="View\MasterDetail\MasterDetailView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </None>
+      <None Update="View\MasterDetail\MasterView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </None>
     </ItemGroup>
 </Project>
