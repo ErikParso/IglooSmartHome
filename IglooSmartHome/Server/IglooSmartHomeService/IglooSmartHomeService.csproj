@@ -263,6 +263,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\IglooSmartHome - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\IglooSmartHome - Web Deploy1.pubxml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

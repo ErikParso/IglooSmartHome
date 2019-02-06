@@ -17,7 +17,7 @@ namespace IglooSmartHome.App_Start
                 c.SingleApiVersion("v1", "myService");
                 c.OperationFilter<MobileAppHeaderFilter>();
                 c.SchemaFilter<MobileAppSchemaFilter>();
-                c.AppServiceAuthentication("https://balanse.azurewebsites.net/", "facebook");
+                c.AppServiceAuthentication("https://igloosmarthome.azurewebsites.net/", "google");
                 c.OperationFilter<AddAuthorizationHeaderParameterOperationFilter>();
             }).EnableSwaggerUi(c =>
             {

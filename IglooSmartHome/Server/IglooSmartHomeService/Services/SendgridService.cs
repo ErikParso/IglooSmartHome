@@ -9,7 +9,7 @@ namespace IglooSmartHome.Services
         public void SendEmail(string subject, string message, string to)
         {
             var msg = new SendGridMessage();
-            msg.SetFrom(new EmailAddress("team@balanse.com", "Balanse team"));
+            msg.SetFrom(new EmailAddress("team@igloo.com", "Igloo smart home"));
             msg.AddTo(to);
             msg.SetSubject(subject);
             msg.AddContent(MimeType.Html, message);
