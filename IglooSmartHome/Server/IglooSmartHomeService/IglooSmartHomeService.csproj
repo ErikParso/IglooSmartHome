@@ -78,7 +78,7 @@
       <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Azure.Server.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Igloo.Azure.Server.Utils.1.0.0\lib\net47\Azure.Server.Utils.dll</HintPath>
+      <HintPath>..\packages\Igloo.Azure.Server.Utils.1.0.1\lib\net47\Azure.Server.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Azure.Server.Utils.Communication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Igloo.Azure.Server.Utils.Communication.1.0.0\lib\netstandard2.0\Azure.Server.Utils.Communication.dll</HintPath>
