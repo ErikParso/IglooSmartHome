@@ -10,7 +10,7 @@ namespace IglooSmartHome.Controllers
     public class CustomLoginController : CustomLoginController<Account>
     {
         public CustomLoginController(IglooSmartHomeContext context)
-            : base(context, "https://balanse.azurewebsites.net/", TimeSpan.FromDays(60))
+            : base(context, "https://igloosmarthome.azurewebsites.net/", TimeSpan.FromDays(60))
         {
 
         }
