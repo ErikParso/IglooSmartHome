@@ -1,7 +1,7 @@
 using Autofac;
 using Autofac.Integration.WebApi;
 using Azure.Server.Utils.Email;
-using IglooSmartHome.App_Start;
+using IglooSmartHome.AppStart;
 using IglooSmartHome.Controllers;
 using IglooSmartHome.Models;
 using IglooSmartHome.Services;
@@ -16,7 +16,7 @@ using System.Web.Http;
 
 [assembly: OwinStartup(typeof(Startup))]
 
-namespace IglooSmartHome.App_Start
+namespace IglooSmartHome.AppStart
 {
     public partial class Startup
     {

@@ -5,7 +5,7 @@ using Swashbuckle.Swagger;
 using System.Web.Http;
 using System.Web.Http.Description;
 
-namespace IglooSmartHome.App_Start
+namespace IglooSmartHome.AppStart
 {
     public partial class Startup
     {
