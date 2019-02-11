@@ -69,7 +69,7 @@
       <Version>1.0.2</Version>
     </PackageReference>
     <PackageReference Include="Igloo.Xamarin.Forms.Utils">
-      <Version>1.0.2</Version>
+      <Version>1.0.2.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.0.2" />
     <PackageReference Include="Xamarin.Android.Support.Annotations">

@@ -7,7 +7,7 @@
         <Grid>
             <Image Source="login_background.png" Aspect="AspectFill"/>
             <view:LoginControl HorizontalOptions="Center" VerticalOptions="Center" x:Name="loginControl"
-                               UserAuthenticated="OnUserAuthenticated" Test="true" TestUrl="Values"/>
+                               UserAuthenticated="OnUserAuthenticated" Test="False" TestUrl="Values"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
