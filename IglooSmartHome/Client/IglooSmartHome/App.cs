@@ -12,19 +12,14 @@ namespace IglooSmartHome
     public class App : AppBase
     {
         public App(Action<ContainerBuilder> registerPlatformSpecific) :
-            base(registerPlatformSpecific)
+            base(Constants.ApplicationURL, registerPlatformSpecific)
         {
 
         }
 
         protected override void RegisterSharedTypes(ContainerBuilder builder)
         {
-            //MobileServiceClient
-            builder.RegisterInstance(new MobileServiceClient(Constants.ApplicationURL));
-            //Pages
             builder.RegisterType<LoginPage>().SingleInstance();
-            //ViewModels
-
         }
 
         protected override Page GetMainPage()
