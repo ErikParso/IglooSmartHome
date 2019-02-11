@@ -62,8 +62,8 @@
     </VisualStudio>
   </ProjectExtensions>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.9.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.0\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.Owin.4.2.0\lib\net45\Autofac.Integration.Owin.dll</HintPath>
@@ -78,10 +78,10 @@
       <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Azure.Server.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Igloo.Azure.Server.Utils.1.0.1\lib\net47\Azure.Server.Utils.dll</HintPath>
+      <HintPath>..\packages\Igloo.Azure.Server.Utils.1.0.2\lib\net47\Azure.Server.Utils.dll</HintPath>
     </Reference>
-    <Reference Include="Azure.Server.Utils.Communication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Igloo.Azure.Server.Utils.Communication.1.0.0\lib\netstandard2.0\Azure.Server.Utils.Communication.dll</HintPath>
+    <Reference Include="Azure.Server.Utils.Communication, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Igloo.Azure.Server.Utils.Communication.1.0.2\lib\netstandard2.0\Azure.Server.Utils.Communication.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -239,13 +239,19 @@
     <Compile Include="Migrations\201902051835447_InitialMigration.Designer.cs">
       <DependentUpon>201902051835447_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902111613136_RefreshTokenColumn.cs" />
+    <Compile Include="Migrations\201902111613136_RefreshTokenColumn.Designer.cs">
+      <DependentUpon>201902111613136_RefreshTokenColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IglooSmartHomeContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SendgridService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -259,6 +265,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902051835447_InitialMigration.resx">
       <DependentUpon>201902051835447_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902111613136_RefreshTokenColumn.resx">
+      <DependentUpon>201902111613136_RefreshTokenColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
