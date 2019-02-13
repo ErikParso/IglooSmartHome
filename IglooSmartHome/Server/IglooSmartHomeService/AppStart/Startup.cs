@@ -3,6 +3,7 @@ using Autofac.Integration.WebApi;
 using Azure.Server.Utils.Email;
 using IglooSmartHome.AppStart;
 using IglooSmartHome.Controllers;
+using IglooSmartHome.DataObjects;
 using IglooSmartHome.Models;
 using IglooSmartHome.Services;
 using Microsoft.Azure.Mobile.Server;
@@ -63,7 +64,8 @@ namespace IglooSmartHome.AppStart
             builder.RegisterType<CustomRegistrationController>();
             builder.RegisterType<CustomLoginController>();
             builder.RegisterType<AccountsController>();
-            builder.RegisterType<SendgridService>().As<IEmailService>();
+            builder.RegisterType<SendgridService>()
+                .As<IEmailService<Account>>();
             return builder.Build();
         }
     }

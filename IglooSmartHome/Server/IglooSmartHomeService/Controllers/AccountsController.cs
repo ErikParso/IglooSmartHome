@@ -5,13 +5,14 @@ using IglooSmartHome.Models;
 using Microsoft.Azure.Mobile.Server.Config;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Web.Http;
 
 namespace IglooSmartHome.Controllers
 {
     [MobileAppController]
-    public class AccountsController : AccountsController<Account>
+    public class AccountsController : AccountsController<IglooSmartHomeContext, Account>
     {
         private readonly IglooSmartHomeContext _context;
 
@@ -27,22 +28,32 @@ namespace IglooSmartHome.Controllers
         [HttpGet]
         public IEnumerable<Account> GetAll() => _context.Accounts;
 
-        protected override void CreateNewAccount(Account newAccount)
+        protected override DbSet<Account> GetAccountsDbSet(IglooSmartHomeContext fromContext)
+        {
+            return fromContext.Accounts;
+        }
+
+        protected override void SetAccountInformation(Account newAccount)
         {
             switch (newAccount.Provider)
             {
-                case Provider.Google:
+                case "google":
                     newAccount.Name = this.GetCurrentUserClaim("name");
-                    newAccount.Provider = Provider.Google;
                     newAccount.PhotoUrl = this.GetCurrentUserClaim("picture");
+                    newAccount.Email = this.GetCurrentUserClaim(ClaimTypes.Email);
                     break;
-                case Provider.Facebook:
+                case "facebook":
                     newAccount.Name = this.GetCurrentUserClaim(ClaimTypes.Name);
-                    newAccount.Provider = Provider.Facebook;
                     newAccount.PhotoUrl = $"https://graph.facebook.com/v3.2/{newAccount.Sid}/picture?type=large";
+                    newAccount.Email = this.GetCurrentUserClaim(ClaimTypes.Email);
+                    break;
+                case "Federation":
+                    newAccount.Name = newAccount.Sid;
+                    newAccount.PhotoUrl = $"https://identicon-api.herokuapp.com/{newAccount.Name}/50?format=png";
+                    newAccount.Email = newAccount.Name;
                     break;
                 default:
-                    throw new NotImplementedException($"Provider {User.Identity.AuthenticationType} is not supported.");
+                    throw new NotImplementedException($"This account creation method for provider {newAccount.Provider} is not supported.");
             }
         }
     }

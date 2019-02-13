@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace IglooSmartHome.Models
 {
-    public class IglooSmartHomeContext : CustomAuthenticationContext<Account>
+    public class IglooSmartHomeContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         //
@@ -27,6 +27,8 @@ namespace IglooSmartHome.Models
                 new AttributeToColumnAnnotationConvention<TableColumnAttribute, string>(
                     "ServiceTableColumn", (property, attributes) => attributes.Single().ColumnType.ToString()));
         }
+
+        public DbSet<Account> Accounts { get; set; }
     }
 
 }

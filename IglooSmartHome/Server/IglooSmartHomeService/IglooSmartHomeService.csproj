@@ -78,10 +78,10 @@
       <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Azure.Server.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Igloo.Azure.Server.Utils.1.0.2\lib\net47\Azure.Server.Utils.dll</HintPath>
+      <HintPath>..\packages\Igloo.Azure.Server.Utils.1.0.3\lib\net47\Azure.Server.Utils.dll</HintPath>
     </Reference>
-    <Reference Include="Azure.Server.Utils.Communication, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Igloo.Azure.Server.Utils.Communication.1.0.2\lib\netstandard2.0\Azure.Server.Utils.Communication.dll</HintPath>
+    <Reference Include="Azure.Server.Utils.Communication, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Igloo.Azure.Server.Utils.Communication.1.0.3\lib\netstandard2.0\Azure.Server.Utils.Communication.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -150,8 +150,8 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
@@ -243,6 +243,10 @@
     <Compile Include="Migrations\201902111613136_RefreshTokenColumn.Designer.cs">
       <DependentUpon>201902111613136_RefreshTokenColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902131620006_MultiAccountAuthentication.cs" />
+    <Compile Include="Migrations\201902131620006_MultiAccountAuthentication.Designer.cs">
+      <DependentUpon>201902131620006_MultiAccountAuthentication.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IglooSmartHomeContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -268,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902111613136_RefreshTokenColumn.resx">
       <DependentUpon>201902111613136_RefreshTokenColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902131620006_MultiAccountAuthentication.resx">
+      <DependentUpon>201902131620006_MultiAccountAuthentication.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
