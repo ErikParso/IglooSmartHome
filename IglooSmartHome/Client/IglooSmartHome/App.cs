@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using IglooSmartHome.View;
-using Microsoft.WindowsAzure.MobileServices;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Utils;
