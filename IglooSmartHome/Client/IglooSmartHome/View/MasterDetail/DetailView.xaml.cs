@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Utils.Services;
 using Xamarin.Forms.Xaml;
 
 namespace IglooSmartHome.View.MasterDetail
@@ -17,11 +18,13 @@ namespace IglooSmartHome.View.MasterDetail
     public partial class DetailView : ContentPage
     {
         private readonly MobileServiceClient _client;
+        private readonly IAccountStoreService _accountStore;
 
         public DetailView()
         {
             InitializeComponent();
             _client = App.CurrentAppContainer.Resolve<MobileServiceClient>();
+            _accountStore = App.CurrentAppContainer.Resolve<IAccountStoreService>();
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -31,8 +34,12 @@ namespace IglooSmartHome.View.MasterDetail
                 lblInfo.Text = JsonConvert.SerializeObject(
                     await _client.InvokeApiAsync("Accounts", HttpMethod.Post, new Dictionary<string, string>()),
                     Formatting.Indented);
+                lblInfo.Text += Environment.NewLine;
+                lblInfo.Text += JsonConvert.SerializeObject(
+                    _accountStore.RetrieveTokenFromSecureStore(),
+                    Formatting.Indented);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lblInfo.Text = ex.Message;
             }
