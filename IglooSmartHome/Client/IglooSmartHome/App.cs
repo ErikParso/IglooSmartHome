@@ -10,20 +10,20 @@ namespace IglooSmartHome
 {
     public class App : AppBase
     {
-        public App(Action<ContainerBuilder> registerPlatformSpecific) :
-            base(Constants.ApplicationURL, registerPlatformSpecific)
+        public App() : base()
         {
-
+            RegisterTypes(RegisterViews);
         }
 
-        protected override void RegisterSharedTypes(ContainerBuilder builder)
+        protected void RegisterViews(ContainerBuilder builder)
         {
             builder.RegisterType<LoginPage>().SingleInstance();
         }
 
-        protected override Page GetMainPage()
+        protected override void OnStart()
         {
-            return Container.Resolve<LoginPage>();
+            base.OnStart();
+            MainPage = CurrentAppContainer.Resolve<LoginPage>();
         }
 
     }

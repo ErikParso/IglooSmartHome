@@ -19,21 +19,11 @@ namespace IglooSmartHome.Droid
 			CurrentPlatform.Init();
 			Forms.Init (this, bundle);
 
-            App app = new App(RegisterPlatfirmSpecific);
-            LoadApplication (app);
+            App app = new App();
+            app.UseAuthentication(this, "<3passwordiq<3", Constants.ApplicationURL, "igloosmarthome");
+            app.Build();
+            LoadApplication(app);
 		}
-
-        private void RegisterPlatfirmSpecific(ContainerBuilder builder)
-        {
-            builder.RegisterContext(this);
-            builder.RegisterAccountStore(AccountStore.Create(this, "pwd"));
-            builder.RegisterAccountStoreService("igloosmarthome");
-            builder.RegisterAuthenticationService();
-            builder.RegisterCustomLoginService();
-            builder.RegisterProviderLoginService("igloosmarthome");
-            builder.RegisterVerificationService();
-            builder.RegisterAccountInformationService();
-        }
     }
 }
 

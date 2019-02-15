@@ -4,7 +4,7 @@
         <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Igloo.Xamarin.Forms.Utils" Version="1.0.3" />
+        <PackageReference Include="Igloo.Xamarin.Forms.Utils" Version="1.0.3.1" />
         <PackageReference Include="Xamarin.Forms" Version="3.5.0.129452" />
     </ItemGroup>
     <ItemGroup>
