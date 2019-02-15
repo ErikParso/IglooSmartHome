@@ -56,12 +56,6 @@
     <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IglooSmartHome\IglooSmartHome.csproj">
-      <Project>{fa3cf917-b523-441d-a524-7e56a1d0048e}</Project>
-      <Name>IglooSmartHome</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Autofac">
       <Version>4.9.0</Version>
     </PackageReference>
@@ -141,6 +135,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\login_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IglooSmartHome\IglooSmartHome.csproj">
+      <Project>{fa3cf917-b523-441d-a524-7e56a1d0048e}</Project>
+      <Name>IglooSmartHome</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
