@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Utils;
 using Xamarin.Forms.Utils.Services;
 using Xamarin.Forms.Xaml;
 
@@ -17,13 +18,13 @@ namespace IglooSmartHome.View.MasterDetail
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailView : ContentPage
     {
-        private readonly MobileServiceClient _client;
+        private readonly AuthMobileServiceClient _client;
         private readonly IAccountStoreService _accountStore;
 
         public DetailView()
         {
             InitializeComponent();
-            _client = App.CurrentAppContainer.Resolve<MobileServiceClient>();
+            _client = App.CurrentAppContainer.Resolve<AuthMobileServiceClient>();
             _accountStore = App.CurrentAppContainer.Resolve<IAccountStoreService>();
         }
 
