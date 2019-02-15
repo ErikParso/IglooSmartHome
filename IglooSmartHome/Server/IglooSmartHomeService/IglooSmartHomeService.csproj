@@ -229,11 +229,14 @@
   <ItemGroup>
     <Compile Include="AppStart\Startup.cs" />
     <Compile Include="AppStart\Startup.Swagger.cs" />
-    <Compile Include="Controllers\AccountsController.cs" />
-    <Compile Include="Controllers\CustomLoginController.cs" />
-    <Compile Include="Controllers\CustomRegistrationController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Controllers\VerificationController.cs" />
+    <Compile Include="Controllers\Accounts\AccountsController.cs" />
+    <Compile Include="Controllers\Accounts\CustomLoginController.cs" />
+    <Compile Include="Controllers\Accounts\CustomRegistrationController.cs" />
+    <Compile Include="Controllers\Devices\DeviceLoginController.cs" />
+    <Compile Include="Controllers\Devices\DeviceRegistrationController.cs" />
+    <Compile Include="Controllers\Accounts\ValuesController.cs" />
+    <Compile Include="Controllers\Accounts\VerificationController.cs" />
+    <Compile Include="Controllers\Devices\DevicesController.cs" />
     <Compile Include="DataObjects\Account.cs" />
     <Compile Include="DataObjects\Device.cs" />
     <Compile Include="Migrations\201902051835447_InitialMigration.cs" />

@@ -1,9 +1,8 @@
-﻿using System.Data.Entity;
-using Azure.Server.Utils.Communication.Authentication;
-using Azure.Server.Utils.CustomAuthentication;
+﻿using Azure.Server.Utils.CustomAuthentication;
 using IglooSmartHome.DataObjects;
 using IglooSmartHome.Models;
 using Microsoft.Azure.Mobile.Server.Config;
+using System.Data.Entity;
 
 namespace IglooSmartHome.Controllers
 {
