@@ -235,6 +235,7 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VerificationController.cs" />
     <Compile Include="DataObjects\Account.cs" />
+    <Compile Include="DataObjects\Device.cs" />
     <Compile Include="Migrations\201902051835447_InitialMigration.cs" />
     <Compile Include="Migrations\201902051835447_InitialMigration.Designer.cs">
       <DependentUpon>201902051835447_InitialMigration.cs</DependentUpon>
@@ -246,6 +247,10 @@
     <Compile Include="Migrations\201902131620006_MultiAccountAuthentication.cs" />
     <Compile Include="Migrations\201902131620006_MultiAccountAuthentication.Designer.cs">
       <DependentUpon>201902131620006_MultiAccountAuthentication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902151456304_DeviceEntity.cs" />
+    <Compile Include="Migrations\201902151456304_DeviceEntity.Designer.cs">
+      <DependentUpon>201902151456304_DeviceEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IglooSmartHomeContext.cs" />
@@ -275,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902131620006_MultiAccountAuthentication.resx">
       <DependentUpon>201902131620006_MultiAccountAuthentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902151456304_DeviceEntity.resx">
+      <DependentUpon>201902151456304_DeviceEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

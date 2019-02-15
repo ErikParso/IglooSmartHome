@@ -1,9 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Autofac;
 using Microsoft.WindowsAzure.MobileServices;
-using Xamarin.Auth;
 using Xamarin.Droid.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
