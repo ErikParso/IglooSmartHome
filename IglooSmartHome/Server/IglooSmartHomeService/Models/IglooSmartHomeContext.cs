@@ -1,5 +1,6 @@
 ﻿using Azure.Server.Utils.CustomAuthentication;
 using IglooSmartHome.DataObjects;
+using IglooSmartHomeService.DataObjects;
 using Microsoft.Azure.Mobile.Server.Tables;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -19,7 +20,7 @@ namespace IglooSmartHome.Models
         private const string connectionStringName = "Name=MS_TableConnectionString";
         //or use Environment.GetEnvironmentVariable("SQLAZURECONNSTR_Balanse")
 
-        public IglooSmartHomeContext(): base(connectionStringName) { }
+        public IglooSmartHomeContext() : base(connectionStringName) { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -30,7 +31,7 @@ namespace IglooSmartHome.Models
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Device> Devices { get; set; }
-
+        public DbSet<DeviceSubscription> DeviceSubscriptions { get; set; }
     }
 
 }
