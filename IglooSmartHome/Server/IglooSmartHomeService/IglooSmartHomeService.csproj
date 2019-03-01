@@ -237,6 +237,7 @@
     <Compile Include="Controllers\Accounts\ValuesController.cs" />
     <Compile Include="Controllers\Accounts\VerificationController.cs" />
     <Compile Include="Controllers\Devices\DevicesController.cs" />
+    <Compile Include="Controllers\SubscriptionController.cs" />
     <Compile Include="DataObjects\Account.cs" />
     <Compile Include="DataObjects\Device.cs" />
     <Compile Include="DataObjects\DeviceSubscription.cs" />
