@@ -246,6 +246,10 @@
     <Compile Include="Migrations\201902151728332_InitialMigration.Designer.cs">
       <DependentUpon>201902151728332_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903011517340_AutoIncrementSubscriptionEntity.cs" />
+    <Compile Include="Migrations\201903011517340_AutoIncrementSubscriptionEntity.Designer.cs">
+      <DependentUpon>201903011517340_AutoIncrementSubscriptionEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IglooSmartHomeContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -273,6 +277,12 @@
     <EmbeddedResource Include="Migrations\201902151728332_InitialMigration.resx">
       <DependentUpon>201902151728332_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903011517340_AutoIncrementSubscriptionEntity.resx">
+      <DependentUpon>201903011517340_AutoIncrementSubscriptionEntity.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

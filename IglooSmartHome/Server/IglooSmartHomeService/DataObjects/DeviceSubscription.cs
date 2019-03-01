@@ -7,6 +7,7 @@ namespace IglooSmartHomeService.DataObjects
     public class DeviceSubscription
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [ForeignKey(nameof(Account))]
