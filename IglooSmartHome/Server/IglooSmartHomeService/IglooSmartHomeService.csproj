@@ -77,12 +77,6 @@
     <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Azure.Server.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Igloo.Azure.Server.Utils.1.0.3.3\lib\net47\Azure.Server.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="Azure.Server.Utils.Communication, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Igloo.Azure.Server.Utils.Communication.1.0.3\lib\netstandard2.0\Azure.Server.Utils.Communication.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -242,13 +236,9 @@
     <Compile Include="DataObjects\Device.cs" />
     <Compile Include="DataObjects\DeviceSubscription.cs" />
     <Compile Include="DataObjects\SubscriptionRole.cs" />
-    <Compile Include="Migrations\201902151728332_InitialMigration.cs" />
-    <Compile Include="Migrations\201902151728332_InitialMigration.Designer.cs">
-      <DependentUpon>201902151728332_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903011517340_AutoIncrementSubscriptionEntity.cs" />
-    <Compile Include="Migrations\201903011517340_AutoIncrementSubscriptionEntity.Designer.cs">
-      <DependentUpon>201903011517340_AutoIncrementSubscriptionEntity.cs</DependentUpon>
+    <Compile Include="Migrations\201903011616466_InitialMigration.cs" />
+    <Compile Include="Migrations\201903011616466_InitialMigration.Designer.cs">
+      <DependentUpon>201903011616466_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IglooSmartHomeContext.cs" />
@@ -274,15 +264,22 @@
     <None Include="Properties\PublishProfiles\IglooSmartHome - Web Deploy1.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902151728332_InitialMigration.resx">
-      <DependentUpon>201902151728332_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903011517340_AutoIncrementSubscriptionEntity.resx">
-      <DependentUpon>201903011517340_AutoIncrementSubscriptionEntity.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <ProjectReference Include="..\..\..\..\Xamarin-Utils\Xamarin.Utils\Azure.Server.Utils.Communication\Azure.Server.Utils.Communication.csproj">
+      <Project>{b2bbd46f-41b4-4e43-94c9-af679af70504}</Project>
+      <Name>Azure.Server.Utils.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Xamarin-Utils\Xamarin.Utils\Azure.Server.Utils\Azure.Server.Utils.csproj">
+      <Project>{f7e4690b-124b-49ab-a14e-ec8fc8786c64}</Project>
+      <Name>Azure.Server.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903011616466_InitialMigration.resx">
+      <DependentUpon>201903011616466_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

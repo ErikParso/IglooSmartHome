@@ -11,7 +11,7 @@ namespace IglooSmartHomeService.Migrations
                 "dbo.Accounts",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
                         PhotoUrl = c.String(),
                         Name = c.String(),
                         Email = c.String(),
@@ -30,7 +30,7 @@ namespace IglooSmartHomeService.Migrations
                 "dbo.Devices",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
                         Sid = c.String(),
                         Provider = c.String(),
                         Salt = c.Binary(),
@@ -47,13 +47,13 @@ namespace IglooSmartHomeService.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        AccountId = c.String(maxLength: 128),
-                        DeviceId = c.String(maxLength: 128),
+                        AccountId = c.Int(nullable: false),
+                        DeviceId = c.Int(nullable: false),
                         Role = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Accounts", t => t.AccountId)
-                .ForeignKey("dbo.Devices", t => t.DeviceId)
+                .ForeignKey("dbo.Accounts", t => t.AccountId, cascadeDelete: true)
+                .ForeignKey("dbo.Devices", t => t.DeviceId, cascadeDelete: true)
                 .Index(t => t.AccountId)
                 .Index(t => t.DeviceId);
             

@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IglooSmartHomeService", "IglooSmartHomeService\IglooSmartHomeService.csproj", "{209FA716-A7AD-4095-BD70-C8710FC66FA7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure.Server.Utils.Communication", "..\..\..\Xamarin-Utils\Xamarin.Utils\Azure.Server.Utils.Communication\Azure.Server.Utils.Communication.csproj", "{B2BBD46F-41B4-4E43-94C9-AF679AF70504}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure.Server.Utils", "..\..\..\Xamarin-Utils\Xamarin.Utils\Azure.Server.Utils\Azure.Server.Utils.csproj", "{F7E4690B-124B-49AB-A14E-EC8FC8786C64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +19,19 @@ Global
 		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2BBD46F-41B4-4E43-94C9-AF679AF70504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2BBD46F-41B4-4E43-94C9-AF679AF70504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2BBD46F-41B4-4E43-94C9-AF679AF70504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2BBD46F-41B4-4E43-94C9-AF679AF70504}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7E4690B-124B-49AB-A14E-EC8FC8786C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7E4690B-124B-49AB-A14E-EC8FC8786C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7E4690B-124B-49AB-A14E-EC8FC8786C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7E4690B-124B-49AB-A14E-EC8FC8786C64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ECFEC730-9C18-419F-9806-9AA5EA570EC8}
 	EndGlobalSection
 EndGlobal
