@@ -33,6 +33,7 @@ namespace IglooSmartHome.Controllers.Devices
         protected override void SetAccountInformation(Device newAccount)
         {
             newAccount.Verified = true;
+            newAccount.CustomDeviceName = newAccount.Sid;
         }
     }
 }

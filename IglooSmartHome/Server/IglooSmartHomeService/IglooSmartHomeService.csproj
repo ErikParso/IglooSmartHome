@@ -240,6 +240,10 @@
     <Compile Include="Migrations\201903011616466_InitialMigration.Designer.cs">
       <DependentUpon>201903011616466_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903071031305_CustomDeviceNameField.cs" />
+    <Compile Include="Migrations\201903071031305_CustomDeviceNameField.Designer.cs">
+      <DependentUpon>201903071031305_CustomDeviceNameField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IglooSmartHomeContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -279,6 +283,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903011616466_InitialMigration.resx">
       <DependentUpon>201903011616466_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903071031305_CustomDeviceNameField.resx">
+      <DependentUpon>201903071031305_CustomDeviceNameField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -4,6 +4,6 @@ namespace IglooSmartHome.DataObjects
 {
     public class Device : AccountBase
     {
-
+        public string CustomDeviceName { get; set; }
     }
 }
