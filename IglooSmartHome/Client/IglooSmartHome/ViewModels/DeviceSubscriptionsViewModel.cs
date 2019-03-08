@@ -1,5 +1,6 @@
 ﻿using IglooSmartHome.Models;
 using IglooSmartHome.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -17,6 +18,16 @@ namespace IglooSmartHome.ViewModels
         {
             _devicesService = devicesService;
             _subscriptions = Enumerable.Empty<DeviceSubscription>();
+        }
+
+        private void AddHandlers()
+        {
+            _devicesService.NewDeviceSubscribed += NewDeviceSubscribed;
+        }
+
+        private void NewDeviceSubscribed(object sender, DeviceSubscription e)
+        {
+            Subscriptions = Subscriptions.Concat(new[] { e });
         }
 
         public IEnumerable<DeviceSubscription> Subscriptions {

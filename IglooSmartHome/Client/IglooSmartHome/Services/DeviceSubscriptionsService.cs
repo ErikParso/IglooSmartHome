@@ -1,6 +1,7 @@
 ﻿using IglooSmartHome.Models;
+using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms.Utils;
@@ -9,7 +10,9 @@ namespace IglooSmartHome.Services
 {
     public interface IDeviceSubscriptionService
     {
+        event EventHandler<DeviceSubscription> NewDeviceSubscribed;
         Task<IEnumerable<DeviceSubscription>> GetDeviceSubscriptionsAsync();
+        Task<DeviceSubscription> SubscribeToDeviceAsync(string deviceId, string customDeviceName);
     }
 
     public class DeviceSubscriptionsService : IDeviceSubscriptionService
@@ -21,27 +24,28 @@ namespace IglooSmartHome.Services
             _client = client;
         }
 
+        public event EventHandler<DeviceSubscription> NewDeviceSubscribed;
+
         public async Task<IEnumerable<DeviceSubscription>> GetDeviceSubscriptionsAsync()
             => await _client.InvokeApiAsync<IEnumerable<DeviceSubscription>>(
-                "subscription", HttpMethod.Get, new Dictionary<string,string>());
-    }
+                "subscription", HttpMethod.Get, new Dictionary<string, string>());
 
-    public class DeviceSubscriptionsDummyService : IDeviceSubscriptionService
-    {
-        private readonly AuthMobileServiceClient _client;
-
-        public DeviceSubscriptionsDummyService(AuthMobileServiceClient client)
+        public async Task<DeviceSubscription> SubscribeToDeviceAsync(string deviceId, string customDeviceName)
         {
-            _client = client;
-        }
-
-        public async Task<IEnumerable<DeviceSubscription>> GetDeviceSubscriptionsAsync()
-            => await Task.FromResult(Enumerable.Range(1, 100).Select(id => new DeviceSubscription()
+            try
             {
-                CustomDeviceName = "device" + id,
-                DeviceId = id,
-                Id = id,
-                Role = DeviceSubscriptionRole.Guest
-            }));
+                var subscription = await _client.InvokeApiAsync<DeviceSubscription>(
+                    "subscription", HttpMethod.Post, new Dictionary<string, string>()
+                    {
+                        { "deviceCode", deviceId }, { "customDeviceName", customDeviceName }
+                    });
+                NewDeviceSubscribed?.Invoke(this, subscription);
+                return subscription;
+            }
+            catch (MobileServiceInvalidOperationException)
+            {
+                return null;
+            }
+        }
     }
 }

@@ -27,11 +27,12 @@ namespace IglooSmartHome
         private void RegisterViewModels(ContainerBuilder builder)
         {
             builder.RegisterType<DeviceSubscriptionsViewModel>().SingleInstance();
+            builder.RegisterType<DeviceSubscriptionPopupViewModel>().SingleInstance();
         }
 
         private void RegisterServices(ContainerBuilder builder)
         {
-            builder.RegisterType<DeviceSubscriptionsDummyService>()
+            builder.RegisterType<DeviceSubscriptionsService>()
                 .As<IDeviceSubscriptionService>()
                 .SingleInstance();
         }

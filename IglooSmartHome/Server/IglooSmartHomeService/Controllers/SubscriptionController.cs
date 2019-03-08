@@ -55,7 +55,7 @@ namespace IglooSmartHomeService.Controllers
             if (!string.IsNullOrWhiteSpace(customDeviceName))
                 device.CustomDeviceName = customDeviceName;
 
-            var subscription = new DeviceSubscription()
+            var subs = new DeviceSubscription()
             {
                 AccountId = acc.Id,
                 Account = acc,
@@ -63,9 +63,15 @@ namespace IglooSmartHomeService.Controllers
                 Device = device,
                 Role = SubscriptionRole.Owner,
             };
-            _context.DeviceSubscriptions.Add(subscription);
+            _context.DeviceSubscriptions.Add(subs);
             _context.SaveChanges();
-            return Ok("You was set as device owner");
+
+            return Ok(new {
+                subs.Id,
+                subs.DeviceId,
+                subs.Device.CustomDeviceName,
+                subs.Role,
+            });
         }
 
         [HttpDelete]
