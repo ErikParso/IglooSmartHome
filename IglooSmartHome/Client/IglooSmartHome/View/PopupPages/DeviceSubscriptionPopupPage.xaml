@@ -19,23 +19,25 @@
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
     <!--You can use any elements here which are extended from Xamarin.Forms.View-->
-    <Grid BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Center">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Label Grid.Row="0"
+    <Frame HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White" Padding="20" CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0"
                Text="Stať sa vlastníkom zariadenia"/>
-        <Entry Grid.Row="1"
+            <Entry Grid.Row="1"
                Placeholder="Id zariadenia"
                Text="{Binding DeviceId}"/>
-        <Entry Grid.Row="2"
+            <Entry Grid.Row="2"
                Placeholder="Názov zariadenia"
                Text="{Binding CustomDeviceName}"/>
-        <Button Grid.Row="3"
+            <Button Grid.Row="3"
                 Text="Pridať zariadenie"
                 Clicked="Button_Clicked"/>
-    </Grid>
+        </Grid>
+    </Frame>
 </pages:PopupPage>
