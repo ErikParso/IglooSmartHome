@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using IglooSmartHome.ViewModels;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Utils;
@@ -22,7 +23,12 @@ namespace IglooSmartHome.Controls
         public async Task ReloadDevicesAsync()
             => await _viewModel.ReloadDevicesAsync();
 
-        private void DeviceSubscription_Tapped(object sender, System.EventArgs e)
+        private void DeviceSubscription_Tapped(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddDevice_click(object sender, EventArgs e)
         {
 
         }

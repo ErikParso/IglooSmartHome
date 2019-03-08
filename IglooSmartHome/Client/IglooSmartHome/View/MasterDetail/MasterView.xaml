@@ -10,7 +10,11 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <controls:ProfileBar x:Name="profileBar" Grid.Row="0" LogoutClicked="ProfileBar_LogoutClicked" VerticalOptions="Start"/>
-        <iglooControls:DeviceSubscriptionsControl x:Name="deviceSubscriptionsControl" Grid.Row="1"/>
+        <controls:ProfileBar x:Name="profileBar" Grid.Row="0"
+                             LogoutClicked="ProfileBar_LogoutClicked"
+                             VerticalOptions="Start"/>
+        <ScrollView Grid.Row="1">
+            <iglooControls:DeviceSubscriptionsControl x:Name="deviceSubscriptionsControl"/>
+        </ScrollView>
     </Grid>
 </ContentPage>

@@ -31,7 +31,9 @@ namespace IglooSmartHome
 
         private void RegisterServices(ContainerBuilder builder)
         {
-            builder.RegisterType<DeviceSubscriptionsService>().SingleInstance();
+            builder.RegisterType<DeviceSubscriptionsDummyService>()
+                .As<IDeviceSubscriptionService>()
+                .SingleInstance();
         }
 
         protected override void OnStart()

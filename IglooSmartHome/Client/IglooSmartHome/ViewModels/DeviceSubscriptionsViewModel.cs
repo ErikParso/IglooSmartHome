@@ -10,10 +10,10 @@ namespace IglooSmartHome.ViewModels
 {
     public class DeviceSubscriptionsViewModel : INotifyPropertyChanged
     {
-        private readonly DeviceSubscriptionsService _devicesService;
+        private readonly IDeviceSubscriptionService _devicesService;
         private IEnumerable<DeviceSubscription> _subscriptions;
 
-        public DeviceSubscriptionsViewModel(DeviceSubscriptionsService devicesService)
+        public DeviceSubscriptionsViewModel(IDeviceSubscriptionService devicesService)
         {
             _devicesService = devicesService;
             _subscriptions = Enumerable.Empty<DeviceSubscription>();
