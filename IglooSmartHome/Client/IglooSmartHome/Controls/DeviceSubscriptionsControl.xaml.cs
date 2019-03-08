@@ -16,9 +16,15 @@ namespace IglooSmartHome.Controls
         {
             InitializeComponent();
             _viewModel = AppBase.CurrentAppContainer.Resolve<DeviceSubscriptionsViewModel>();
+            BindingContext = _viewModel;
         }
 
         public async Task ReloadDevicesAsync()
             => await _viewModel.ReloadDevicesAsync();
+
+        private void DeviceSubscription_Tapped(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

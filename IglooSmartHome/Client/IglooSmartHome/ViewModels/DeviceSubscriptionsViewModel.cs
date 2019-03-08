@@ -2,6 +2,7 @@
 using IglooSmartHome.Services;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace IglooSmartHome.ViewModels
         public DeviceSubscriptionsViewModel(DeviceSubscriptionsService devicesService)
         {
             _devicesService = devicesService;
+            _subscriptions = Enumerable.Empty<DeviceSubscription>();
         }
 
         public IEnumerable<DeviceSubscription> Subscriptions {

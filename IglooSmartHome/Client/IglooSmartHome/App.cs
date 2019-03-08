@@ -15,19 +15,21 @@ namespace IglooSmartHome
         public App() : base()
         {
             RegisterTypes(RegisterViews);
+            RegisterTypes(RegisterViewModels);
+            RegisterTypes(RegisterServices);
         }
 
-        protected void RegisterViews(ContainerBuilder builder)
+        private void RegisterViews(ContainerBuilder builder)
         {
             builder.RegisterType<LoginPage>().SingleInstance();
         }
 
-        protected void RegisterViewModels(ContainerBuilder builder)
+        private void RegisterViewModels(ContainerBuilder builder)
         {
             builder.RegisterType<DeviceSubscriptionsViewModel>().SingleInstance();
         }
 
-        protected void RegisterServices(ContainerBuilder builder)
+        private void RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterType<DeviceSubscriptionsService>().SingleInstance();
         }
