@@ -1,5 +1,7 @@
 ﻿using Autofac;
+using IglooSmartHome.Services;
 using IglooSmartHome.View;
+using IglooSmartHome.ViewModels;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Utils;
@@ -18,6 +20,16 @@ namespace IglooSmartHome
         protected void RegisterViews(ContainerBuilder builder)
         {
             builder.RegisterType<LoginPage>().SingleInstance();
+        }
+
+        protected void RegisterViewModels(ContainerBuilder builder)
+        {
+            builder.RegisterType<DeviceSubscriptionsViewModel>().SingleInstance();
+        }
+
+        protected void RegisterServices(ContainerBuilder builder)
+        {
+            builder.RegisterType<DeviceSubscriptionsService>().SingleInstance();
         }
 
         protected override void OnStart()

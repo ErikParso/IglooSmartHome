@@ -23,10 +23,11 @@ namespace IglooSmartHome.View.MasterDetail
             AppBase.Current.MainPage = AppBase.CurrentAppContainer.Resolve<LoginPage>();
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-            profileBar.LoadAccountInformation();
+            await profileBar.LoadAccountInformation();
+            await deviceSubscriptionsControl.ReloadDevicesAsync();
         }
     }
 }
