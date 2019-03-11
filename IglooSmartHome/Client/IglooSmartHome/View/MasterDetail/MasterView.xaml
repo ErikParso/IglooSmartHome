@@ -12,7 +12,8 @@
         </Grid.RowDefinitions>
         <controls:ProfileBar x:Name="profileBar" Grid.Row="0"
                              LogoutClicked="ProfileBar_LogoutClicked"
-                             VerticalOptions="Start"/>
+                             VerticalOptions="Start"
+                             BackgroundColor="{StaticResource ProfileBarBackgroundColor}"/>
         <ScrollView Grid.Row="1">
             <iglooControls:DeviceSubscriptionsControl x:Name="deviceSubscriptionsControl"/>
         </ScrollView>
