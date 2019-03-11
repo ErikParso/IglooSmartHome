@@ -6,5 +6,6 @@
   <Color x:Key="PrimaryTextColor">#000000</Color>
   <Color x:Key="SeparatorColor">#0000FF</Color>
   <x:String x:Key="KeyImage">key24Blue.png</x:String>
+  <x:String x:Key="PlusImage">plus24Blue.png</x:String>
 
 </ResourceDictionary>

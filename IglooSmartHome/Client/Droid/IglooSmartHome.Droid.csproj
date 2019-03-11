@@ -131,9 +131,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\login_background.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\..\Xamarin-Utils\Xamarin.Utils\Xamarin.Droid.Utils\Xamarin.Droid.Utils.csproj">
       <Project>{86b412d1-080a-4ab9-8280-1c7e2de4bbda}</Project>
       <Name>Xamarin.Droid.Utils</Name>
@@ -149,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\key24Blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\plus24Blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\login_background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

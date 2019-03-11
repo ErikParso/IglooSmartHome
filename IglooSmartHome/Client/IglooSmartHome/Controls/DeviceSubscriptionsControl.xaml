@@ -46,8 +46,11 @@
                 </BindableLayout.ItemTemplate>
             </StackLayout>
 
-            <Button Grid.Row="1"
+            <Button Grid.Row="1" HorizontalOptions="Center"
+                    Image="{StaticResource PlusImage}"
                     Text="Pridať zariadenie"
+                    BackgroundColor="Transparent"
+                    BorderWidth="0"
                     Clicked="ButtonAddDevice_Clicked"/>
         </Grid>
     </ContentView.Content>
