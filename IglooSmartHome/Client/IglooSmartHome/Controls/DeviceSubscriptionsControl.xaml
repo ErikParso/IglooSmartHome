@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:IglooSmartHome.Models"
              x:Class="IglooSmartHome.Controls.DeviceSubscriptionsControl">
     <ContentView.Content>
         <Grid>
@@ -14,13 +15,33 @@
                          Orientation="Vertical">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Label Text="{Binding CustomDeviceName}">
-                            <Label.GestureRecognizers>
+                        <Grid Margin="10,0,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Tapped="DeviceSubscription_Tapped"
                                     CommandParameter="{Binding .}"/>
-                            </Label.GestureRecognizers>
-                        </Label>
+                            </Grid.GestureRecognizers>
+
+                            <!--owner key icon-->
+                            <Image Grid.Column="0" IsVisible="False"
+                                   Source="{StaticResource KeyImage}">
+                                <Image.Triggers>
+                                    <DataTrigger TargetType="Image" Binding="{Binding Role}"
+                                                 Value="{x:Static models:DeviceSubscriptionRole.Owner}">
+                                        <Setter Property="IsVisible" Value="True"/>
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+
+                            <!--custom device name-->
+                            <Label Grid.Column="1"
+                                   Text="{Binding CustomDeviceName}"
+                                   FontSize="Medium"/>
+                        </Grid>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </StackLayout>

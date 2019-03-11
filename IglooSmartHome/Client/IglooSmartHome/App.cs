@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using IglooSmartHome.Services;
+using IglooSmartHome.Themes;
 using IglooSmartHome.View;
 using IglooSmartHome.ViewModels;
 using System;
@@ -17,6 +18,7 @@ namespace IglooSmartHome
             RegisterTypes(RegisterViews);
             RegisterTypes(RegisterViewModels);
             RegisterTypes(RegisterServices);
+            Resources = new White();
         }
 
         private void RegisterViews(ContainerBuilder builder)
