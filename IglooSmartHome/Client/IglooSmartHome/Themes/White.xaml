@@ -5,6 +5,8 @@
 
     <Color x:Key="PrimaryTextColor">#000000</Color>
     <Color x:Key="ProfileBarBackgroundColor">#80A8E0</Color>
+    <Color x:Key="SplitterColor">#80A8E0</Color>
+
     <x:String x:Key="KeyImage">key24Blue.png</x:String>
     <x:String x:Key="PlusImage">plus24Blue.png</x:String>
 
