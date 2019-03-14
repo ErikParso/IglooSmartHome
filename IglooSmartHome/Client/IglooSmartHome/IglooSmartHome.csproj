@@ -4,8 +4,12 @@
         <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Igloo.Xamarin.Forms.Utils" Version="1.0.3.1" />
+        <PackageReference Include="Autofac" Version="4.9.1" />
+        <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
         <PackageReference Include="Xamarin.Forms" Version="3.5.0.129452" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Xamarin-Utils\Xamarin.Utils\Xamarin.Forms.Utils\Xamarin.Forms.Utils.csproj" />
     </ItemGroup>
     <ItemGroup>
       <Compile Update="View\MasterDetail\DetailView.xaml.cs">
@@ -19,6 +23,9 @@
       </Compile>
     </ItemGroup>
     <ItemGroup>
+        <EmbeddedResource Update="Controls\DeviceSubscriptionsControl.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
         <EmbeddedResource Update="Themes\White.xaml">
           <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
         </EmbeddedResource>
@@ -35,6 +42,9 @@
           <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
         </EmbeddedResource>
         <EmbeddedResource Update="View\MasterDetail\MasterView.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="View\PopupPages\DeviceSubscriptionPopupPage.xaml">
           <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
         </EmbeddedResource>
     </ItemGroup>
@@ -54,5 +64,8 @@
       <None Update="View\MasterDetail\MasterView.xaml">
         <Generator>MSBuild:Compile</Generator>
       </None>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="NewFolder\" />
     </ItemGroup>
 </Project>

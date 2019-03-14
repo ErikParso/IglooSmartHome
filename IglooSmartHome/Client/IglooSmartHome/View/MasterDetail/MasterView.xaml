@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Xamarin.Forms.Utils.Controls;assembly=Xamarin.Forms.Utils"
+             xmlns:iglooControls="clr-namespace:IglooSmartHome.Controls"
              x:Class="IglooSmartHome.View.MasterDetail.MasterView"
              Title="Master">
     <Grid>
@@ -9,6 +10,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <controls:ProfileBar x:Name="profileBar" Grid.Row="0" LogoutClicked="ProfileBar_LogoutClicked" VerticalOptions="Start"/>
+        <controls:ProfileBar x:Name="profileBar" Grid.Row="0"
+                             LogoutClicked="ProfileBar_LogoutClicked"
+                             VerticalOptions="Start"
+                             BackgroundColor="{StaticResource ProfileBarBackgroundColor}"/>
+        <ScrollView Grid.Row="1">
+            <iglooControls:DeviceSubscriptionsControl x:Name="deviceSubscriptionsControl"/>
+        </ScrollView>
     </Grid>
 </ContentPage>
