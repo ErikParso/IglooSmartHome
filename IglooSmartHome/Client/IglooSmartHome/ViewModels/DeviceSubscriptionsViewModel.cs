@@ -30,7 +30,8 @@ namespace IglooSmartHome.ViewModels
             Subscriptions = Subscriptions.Concat(new[] { e });
         }
 
-        public IEnumerable<DeviceSubscription> Subscriptions {
+        public IEnumerable<DeviceSubscription> Subscriptions
+        {
             get => _subscriptions;
             set { _subscriptions = value; RaisePropertyChanged(); }
         }
