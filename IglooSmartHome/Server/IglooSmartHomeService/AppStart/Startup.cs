@@ -6,6 +6,8 @@ using IglooSmartHome.Controllers;
 using IglooSmartHome.DataObjects;
 using IglooSmartHome.Models;
 using IglooSmartHome.Services;
+using IglooSmartHomeService.SignalR;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Azure.Mobile.Server;
 using Microsoft.Azure.Mobile.Server.Authentication;
 using Microsoft.Azure.Mobile.Server.Config;
@@ -35,6 +37,7 @@ namespace IglooSmartHome.AppStart
             app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(config);
             app.UseWebApi(config);
+            app.MapSignalR("/signalr", new HubConfiguration());
 
             new MobileAppConfiguration()
                 .UseDefaultConfiguration()
@@ -66,6 +69,10 @@ namespace IglooSmartHome.AppStart
             builder.RegisterType<AccountsController>();
             builder.RegisterType<SendgridService>()
                 .As<IEmailService<Account>>();
+
+            builder.RegisterType<DeviceConnectionHub>()
+                .ExternallyOwned();
+
             return builder.Build();
         }
     }

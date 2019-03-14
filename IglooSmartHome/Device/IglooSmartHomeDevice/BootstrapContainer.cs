@@ -28,6 +28,8 @@ namespace IglooSmartHomeDevice
                 .SingleInstance();
             builder.RegisterType<MainPage>()
                 .SingleInstance();
+            builder.RegisterType<DeviceConnectionService>()
+                .SingleInstance();
 
             Instance = builder.Build();
         }

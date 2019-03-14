@@ -13,6 +13,7 @@ namespace IglooSmartHomeDevice
     public sealed partial class MainPage : Page
     {
         private readonly AuthenticationService _authenticationService;
+        private readonly DeviceConnectionService _deviceConnectionService;
         private readonly IDevicesService _devicesService;
 
         public MainPage()
@@ -21,12 +22,14 @@ namespace IglooSmartHomeDevice
             BootstrapContainer.Initialize();
             _authenticationService = BootstrapContainer.Instance.Resolve<AuthenticationService>();
             _devicesService = BootstrapContainer.Instance.Resolve<IDevicesService>();
+            _deviceConnectionService = BootstrapContainer.Instance.Resolve<DeviceConnectionService>();
         }
 
         private async void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             await _authenticationService.LoginAsync();
             var info = await _devicesService.GetDeviceInfoAsync();
+            await _deviceConnectionService.Connect();
         }
     }
 }
