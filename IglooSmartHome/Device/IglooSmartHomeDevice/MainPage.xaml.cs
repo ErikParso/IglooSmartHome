@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using IglooSmartHomeDevice.RefitInterfaces;
 using IglooSmartHomeDevice.Services;
 using Windows.UI.Xaml.Controls;
@@ -23,13 +24,27 @@ namespace IglooSmartHomeDevice
             _authenticationService = BootstrapContainer.Instance.Resolve<AuthenticationService>();
             _devicesService = BootstrapContainer.Instance.Resolve<IDevicesService>();
             _deviceConnectionService = BootstrapContainer.Instance.Resolve<DeviceConnectionService>();
+            _deviceConnectionService.OnLog += Log;
+        }
+
+        private async void Log(object sender, string e)
+        {
+            await log.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                log.Text += e + System.Environment.NewLine;
+            });
         }
 
         private async void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             await _authenticationService.LoginAsync();
             var info = await _devicesService.GetDeviceInfoAsync();
-            await _deviceConnectionService.Connect();
+            _deviceConnectionService.Connect();
+        }
+
+        private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+
         }
     }
 }

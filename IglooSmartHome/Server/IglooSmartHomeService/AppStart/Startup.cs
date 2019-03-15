@@ -37,7 +37,7 @@ namespace IglooSmartHome.AppStart
             app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(config);
             app.UseWebApi(config);
-            app.MapSignalR("/signalr", new HubConfiguration());
+            app.MapSignalR("/signalr", new HubConfiguration() { EnableDetailedErrors = true });
 
             new MobileAppConfiguration()
                 .UseDefaultConfiguration()
