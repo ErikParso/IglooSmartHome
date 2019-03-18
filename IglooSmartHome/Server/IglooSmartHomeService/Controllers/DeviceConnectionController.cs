@@ -7,14 +7,14 @@ namespace IglooSmartHomeService.Controllers
     [MobileAppController]
     public class DeviceConnectionController : ApiController
     {
-        private readonly DeviceConnectionHub _deviceConnectionHub;
+        private readonly ConnectionMapping<string> _deviceConnectionMapping;
 
-        public DeviceConnectionController(DeviceConnectionHub deviceConnectionHub)
+        public DeviceConnectionController(ConnectionMapping<string> deviceConnectionMapping)
         {
-            _deviceConnectionHub = deviceConnectionHub;
+            _deviceConnectionMapping = deviceConnectionMapping;
         }
 
         public IHttpActionResult Get()
-            => Ok(_deviceConnectionHub.GetConnectedDevices());
+            => Ok(_deviceConnectionMapping.GetConnections());
     }
 }
