@@ -256,6 +256,7 @@
     <Compile Include="Models\IglooSmartHomeContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SendgridService.cs" />
+    <Compile Include="SignalR\ConnectionMapping.cs" />
     <Compile Include="SignalR\DeviceConnectionHub.cs" />
   </ItemGroup>
   <ItemGroup>

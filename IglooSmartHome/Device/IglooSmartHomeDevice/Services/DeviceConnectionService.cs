@@ -19,9 +19,11 @@ namespace IglooSmartHomeDevice.Services
             _authenticationService = authenticationService;
 
             _hubConnection = new HubConnection(Environment.ServerAddress, new Dictionary<string, string> { { "deviceName", "rpi" } });
+            _hubConnection.Headers.Add("ZUMO-API-VERSION", "2.0.0");
+
             _hubConnection.Closed += OnDisconnected;
             _hubConnection.Error += OnError;
-            _hubConnection.StateChanged += OnStateChenged;
+            _hubConnection.StateChanged += OnStateChanged;
             _hubConnection.Reconnecting += Reconnecting;
             _hubConnection.Reconnected += Reconnected;
             _hubConnection.ConnectionSlow += ConnectionSlow;
@@ -33,6 +35,7 @@ namespace IglooSmartHomeDevice.Services
         public async Task StartConnection()
         {
             OnLog(this, DateTime.Now + ": Connecting...");
+            _hubConnection.Headers["X-ZUMO-AUTH"] = await _authenticationService.RefreshTokenAsync();
             await _hubConnection.Start();
         }
 
@@ -62,7 +65,7 @@ namespace IglooSmartHomeDevice.Services
             OnLog(this, DateTime.Now + $": Reconnecting...");
         }
 
-        private void OnStateChenged(StateChange obj)
+        private void OnStateChanged(StateChange obj)
         {
             OnLog(this, DateTime.Now + $": Connection state changed. ({obj.OldState} => {obj.NewState})");
         }

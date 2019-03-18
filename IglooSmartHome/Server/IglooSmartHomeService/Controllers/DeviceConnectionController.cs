@@ -16,11 +16,5 @@ namespace IglooSmartHomeService.Controllers
 
         public IHttpActionResult Get()
             => Ok(_deviceConnectionHub.GetConnectedDevices());
-
-        public IHttpActionResult Delete()
-        {
-            _deviceConnectionHub.Clear();
-            return Ok();
-        }
     }
 }

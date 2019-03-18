@@ -1,37 +1,45 @@
 ﻿using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace IglooSmartHomeService.SignalR
 {
+    [Authorize]
     public class DeviceConnectionHub : Hub
     {
-        private static readonly List<(string, string)> _connectedIds = new List<(string, string)>();
+        private readonly static ConnectionMapping<string> _connections =
+            new ConnectionMapping<string>();
 
         public override Task OnConnected()
         {
-            _connectedIds.Add((DateTime.Now + " - OnConnected", Context.ConnectionId));
+            string name = GetCurrentUserId();
+            _connections.Add(name, Context.ConnectionId);
             return base.OnConnected();
         }
 
         public override Task OnDisconnected(bool stopCalled)
         {
-            _connectedIds.Add((DateTime.Now + " - OnDisconnected", Context.ConnectionId));
+            string name = GetCurrentUserId();
+            _connections.Remove(name, Context.ConnectionId);
             return base.OnDisconnected(stopCalled);
         }
 
         public override Task OnReconnected()
         {
-            _connectedIds.Add((DateTime.Now + " - OnReconnected", Context.ConnectionId));
+            string name = GetCurrentUserId();
+            if (!_connections.GetConnections(name).Contains(Context.ConnectionId))
+                _connections.Add(name, Context.ConnectionId);
             return base.OnReconnected();
         }
 
-        public List<(string, string)> GetConnectedDevices()
-            => _connectedIds;
+        internal Dictionary<string, HashSet<string>> GetConnectedDevices()
+            => _connections.GetConnections();
 
-        public void Clear()
-            => _connectedIds.Clear();
+        private string GetCurrentUserId()
+            => ((ClaimsPrincipal)Context.User).FindFirst(ClaimTypes.NameIdentifier).Value;
     }
 }
