@@ -10,13 +10,11 @@
     Loaded="Page_Loaded">
 
     <Grid>
-        <TextBlock
-            TextWrapping="WrapWholeWords" 
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch" 
-            Name="log" 
-            ScrollViewer.VerticalScrollBarVisibility="Visible"
-            ScrollViewer.IsVerticalRailEnabled="True"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"           
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+            <TextBlock TextWrapping="WrapWholeWords" Name="log"/>
+        </ScrollViewer>
         <Button Content="Stop Connection" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Button_Click"/>
     </Grid>
 </Page>

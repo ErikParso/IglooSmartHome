@@ -2,6 +2,8 @@
 using Autofac;
 using IglooSmartHomeDevice.RefitInterfaces;
 using IglooSmartHomeDevice.Services;
+using MetroLog;
+using MetroLog.Targets;
 using Windows.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -16,6 +18,7 @@ namespace IglooSmartHomeDevice
         private readonly AuthenticationService _authenticationService;
         private readonly DeviceConnectionService _deviceConnectionService;
         private readonly IDevicesService _devicesService;
+        private readonly ILogger _logger;
 
         public MainPage()
         {
@@ -25,13 +28,17 @@ namespace IglooSmartHomeDevice
             _devicesService = BootstrapContainer.Instance.Resolve<IDevicesService>();
             _deviceConnectionService = BootstrapContainer.Instance.Resolve<DeviceConnectionService>();
             _deviceConnectionService.OnLog += Log;
+
+            LogManagerFactory.DefaultConfiguration.AddTarget(LogLevel.Trace, LogLevel.Fatal, new StreamingFileTarget());
+            _logger = LogManagerFactory.DefaultLogManager.GetLogger<MainPage>();
         }
 
-        private async void Log(object sender, string e)
+        private async void Log(object sender, string message)
         {
             await log.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                log.Text += e + System.Environment.NewLine;
+                log.Text += message + System.Environment.NewLine;
+                _logger.Trace(message);
             });
         }
 
@@ -39,12 +46,12 @@ namespace IglooSmartHomeDevice
         {
             await _authenticationService.LoginAsync();
             var info = await _devicesService.GetDeviceInfoAsync();
-            _deviceConnectionService.Connect();
+            await _deviceConnectionService.StartConnection();
         }
 
         private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
+            _deviceConnectionService.StopConnection();
         }
     }
 }

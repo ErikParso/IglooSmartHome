@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR.Client;
-using Microsoft.AspNet.SignalR.Client.Transports;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
 namespace IglooSmartHomeDevice.Services
@@ -20,30 +17,8 @@ namespace IglooSmartHomeDevice.Services
             AuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
-            NetworkInterface.GetIsNetworkAvailable();
-        }
-
-        public void Connect()
-        {
-            InitializeConnection();
-        }
-
-        private void InitializeConnection()
-        {
-            if (_hubConnection != null)
-            {
-                // Clean up previous connection
-                _hubConnection.Closed -= OnDisconnected;
-                _hubConnection.Error -= OnError;
-                _hubConnection.StateChanged -= OnStateChenged;
-                _hubConnection.Reconnecting -= Reconnecting;
-                _hubConnection.Reconnected -= Reconnected;
-                _hubConnection.ConnectionSlow -= ConnectionSlow;
-                _hubConnection.Received -= Received;
-            }
 
             _hubConnection = new HubConnection(Environment.ServerAddress, new Dictionary<string, string> { { "deviceName", "rpi" } });
-
             _hubConnection.Closed += OnDisconnected;
             _hubConnection.Error += OnError;
             _hubConnection.StateChanged += OnStateChenged;
@@ -53,9 +28,18 @@ namespace IglooSmartHomeDevice.Services
             _hubConnection.Received += Received;
 
             _deviceConnectionHubProxy = _hubConnection.CreateHubProxy("DeviceConnectionHub");
-            OnLog(this, DateTime.Now + ": Initialized new HubConnection.");
+        }
 
-            ConnectWithRetry();
+        public async Task StartConnection()
+        {
+            OnLog(this, DateTime.Now + ": Connecting...");
+            await _hubConnection.Start();
+        }
+
+        internal void StopConnection()
+        {
+            OnLog(this, DateTime.Now + ": Disconnecting...");
+            _hubConnection.Stop();
         }
 
         private void Received(string obj)
@@ -83,37 +67,15 @@ namespace IglooSmartHomeDevice.Services
             OnLog(this, DateTime.Now + $": Connection state changed. ({obj.OldState} => {obj.NewState})");
         }
 
-        internal void StopConnection()
-        {
-            _hubConnection.Stop();
-        }
-
         private void OnError(Exception obj)
         {
-            OnLog(this, DateTime.Now + $": Connection error.");
+            OnLog(this, DateTime.Now + $": Connection error. {obj.Message}");
         }
 
-        void OnDisconnected()
+        async void OnDisconnected()
         {
             OnLog(this, DateTime.Now + ": Connection closed.");
-        }
-
-        private void ConnectWithRetry()
-        {
-            var attemp = 1;
-            var t = _hubConnection.Start();
-            t.ContinueWith(task =>
-            {
-                if (_hubConnection.State == ConnectionState.Connected)
-                {
-                    OnLog(this, DateTime.Now + ": Connected.");
-                }
-                else
-                {
-                    OnLog(this, DateTime.Now + $": Connection attemp {attemp++} failed.");
-                    throw new Exception();
-                }
-            }).Wait();
+            await StartConnection();
         }
     }
 }
