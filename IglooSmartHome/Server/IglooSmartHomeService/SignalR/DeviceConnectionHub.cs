@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using Azure.Server.Utils.Extensions;
+using IglooSmartHome.Models;
 using IglooSmartHomeService.Services;
 using Microsoft.AspNet.SignalR;
 using System;
@@ -13,36 +15,37 @@ namespace IglooSmartHomeService.SignalR
     [Authorize]
     public class DeviceConnectionHub : Hub
     {
-        private readonly ConnectionMapping<string> _connections;
+        private readonly ConnectionMapping<int> _connections;
+        private readonly IglooSmartHomeContext _context;
 
-        public DeviceConnectionHub(DeviceConnectionsMappingService connections)
+        public DeviceConnectionHub(
+            DeviceConnectionsMappingService connections,
+            IglooSmartHomeContext context)
         {
             _connections = connections;
+            _context = context;
         }
 
         public override Task OnConnected()
         {
-            string name = GetCurrentUserId();
-            _connections.Add(name, Context.ConnectionId);
+            var deviceId = Context.User.GetCurrentUserAccount(_context.Devices).Id;
+            _connections.Add(deviceId, Context.ConnectionId);
             return base.OnConnected();
         }
 
         public override Task OnDisconnected(bool stopCalled)
         {
-            string name = GetCurrentUserId();
-            _connections.Remove(name, Context.ConnectionId);
+            var deviceId = Context.User.GetCurrentUserAccount(_context.Devices).Id;
+            _connections.Remove(deviceId, Context.ConnectionId);
             return base.OnDisconnected(stopCalled);
         }
 
         public override Task OnReconnected()
         {
-            string name = GetCurrentUserId();
-            if (!_connections.GetConnections(name).Contains(Context.ConnectionId))
-                _connections.Add(name, Context.ConnectionId);
+            var deviceId = Context.User.GetCurrentUserAccount(_context.Devices).Id;
+            if (!_connections.GetConnections(deviceId).Contains(Context.ConnectionId))
+                _connections.Add(deviceId, Context.ConnectionId);
             return base.OnReconnected();
         }
-
-        private string GetCurrentUserId()
-            => ((ClaimsPrincipal)Context.User).FindFirst(ClaimTypes.NameIdentifier).Value;
     }
 }

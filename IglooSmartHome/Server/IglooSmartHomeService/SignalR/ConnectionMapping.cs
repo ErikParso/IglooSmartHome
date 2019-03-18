@@ -10,29 +10,28 @@ namespace IglooSmartHomeService.SignalR
         private readonly Dictionary<T, HashSet<string>> _connections =
             new Dictionary<T, HashSet<string>>();
 
+        public event EventHandler<T> Online;
+        public event EventHandler<T> Offline;
+
         public int Count => _connections.Count;
 
         public void Add(T key, string connectionId)
         {
             lock (_connections)
             {
-                if (!_connections.TryGetValue(key, out HashSet<string> connections))
+                if (_connections.TryGetValue(key, out HashSet<string> connections))
+                {
+                    connections.Add(connectionId);
+                }
+                else
                 {
                     connections = new HashSet<string>();
                     _connections.Add(key, connections);
+                    connections.Add(connectionId);
+                    Online?.Invoke(this, key);
                 }
-                connections.Add(connectionId);
             }
         }
-
-        public IEnumerable<string> GetConnections(T key)
-            => _connections.TryGetValue(key, out HashSet<string> connections)
-               ? connections
-               : Enumerable.Empty<string>();
-
-
-        public Dictionary<T, HashSet<string>> GetConnections()
-            => _connections;
 
         public void Remove(T key, string connectionId)
         {
@@ -42,9 +41,20 @@ namespace IglooSmartHomeService.SignalR
                 {
                     connections.Remove(connectionId);
                     if (connections.Count == 0)
+                    {
                         _connections.Remove(key);
+                        Offline?.Invoke(this, key);
+                    }
                 }
             }
         }
+
+        public IEnumerable<string> GetConnections(T key)
+            => _connections.TryGetValue(key, out HashSet<string> connections)
+               ? connections
+               : Enumerable.Empty<string>();
+
+        public Dictionary<T, HashSet<string>> GetConnections()
+            => _connections;
     }
 }

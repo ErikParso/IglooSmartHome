@@ -6,8 +6,8 @@ using System.Web;
 
 namespace IglooSmartHomeService.Services
 {
-    public class DeviceConnectionsMappingService : ConnectionMapping<int>
+    public class UserConnectionsMappingService : ConnectionMapping<int>
     {
-        
+
     }
 }

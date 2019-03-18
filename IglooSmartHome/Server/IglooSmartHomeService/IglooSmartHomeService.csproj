@@ -260,8 +260,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DeviceConnectionsMappingService.cs" />
     <Compile Include="Services\SendgridService.cs" />
+    <Compile Include="Services\UserConnectionsMappingService.cs" />
     <Compile Include="SignalR\ConnectionMapping.cs" />
     <Compile Include="SignalR\DeviceConnectionHub.cs" />
+    <Compile Include="SignalR\UserConnectionHub.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\jquery-1.6.4-vsdoc.js" />

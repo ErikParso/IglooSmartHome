@@ -24,7 +24,7 @@ namespace IglooSmartHomeService.Controllers
         [Authorize]
         public IHttpActionResult Get()
         {
-            var acc = this.GetCurrentUserAccount(_context.Accounts);
+            var acc = User.GetCurrentUserAccount(_context.Accounts);
             var myDevices = _context.DeviceSubscriptions
                 .Include("Device")
                 .Where(subs => subs.AccountId == acc.Id)
@@ -41,7 +41,7 @@ namespace IglooSmartHomeService.Controllers
         [Authorize]
         public IHttpActionResult PostInitializeDeviceOwner(string deviceCode, string customDeviceName)
         {
-            var acc = this.GetCurrentUserAccount(_context.Accounts);
+            var acc = User.GetCurrentUserAccount(_context.Accounts);
 
             var device = _context.Devices.SingleOrDefault(d => d.Sid == deviceCode);
             if (device == null)
@@ -78,7 +78,7 @@ namespace IglooSmartHomeService.Controllers
         [Authorize]
         public IHttpActionResult Delete(int subscriptionId)
         {
-            var acc = this.GetCurrentUserAccount(_context.Accounts);
+            var acc = User.GetCurrentUserAccount(_context.Accounts);
             var subs = _context.DeviceSubscriptions
                 .Where(s => s.Id == subscriptionId)
                 .SingleOrDefault();

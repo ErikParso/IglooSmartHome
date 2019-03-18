@@ -8,7 +8,7 @@ namespace IglooSmartHomeService.Controllers
     [MobileAppController]
     public class DeviceConnectionController : ApiController
     {
-        private readonly ConnectionMapping<string> _connections;
+        private readonly ConnectionMapping<int> _connections;
 
         public DeviceConnectionController(DeviceConnectionsMappingService connections)
         {

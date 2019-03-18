@@ -68,6 +68,8 @@ namespace IglooSmartHome.AppStart
                 .As<IEmailService<Account>>();
             builder.RegisterType<DeviceConnectionsMappingService>()
                 .SingleInstance();
+            builder.RegisterType<UserConnectionsMappingService>()
+                .SingleInstance();
             builder.RegisterType<IglooSmartHomeContext>();
 
             return builder.Build();
