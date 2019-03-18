@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using IglooSmartHomeService.Services;
 using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ namespace IglooSmartHomeService.SignalR
     {
         private readonly ConnectionMapping<string> _connections;
 
-        public DeviceConnectionHub(ILifetimeScope lifetimeScope)
+        public DeviceConnectionHub(DeviceConnectionsMappingService connections)
         {
-            _connections = lifetimeScope.Resolve<ConnectionMapping<string>>();
+            _connections = connections;
         }
 
         public override Task OnConnected()

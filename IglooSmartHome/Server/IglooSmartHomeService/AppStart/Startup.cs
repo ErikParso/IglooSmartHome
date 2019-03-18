@@ -8,6 +8,7 @@ using IglooSmartHome.DataObjects;
 using IglooSmartHome.Models;
 using IglooSmartHome.Services;
 using IglooSmartHomeService.Controllers;
+using IglooSmartHomeService.Services;
 using IglooSmartHomeService.SignalR;
 using Microsoft.AspNet.SignalR;
 using Microsoft.Azure.Mobile.Server;
@@ -65,7 +66,7 @@ namespace IglooSmartHome.AppStart
 
             builder.RegisterType<SendgridService>()
                 .As<IEmailService<Account>>();
-            builder.RegisterType<ConnectionMapping<string>>()
+            builder.RegisterType<DeviceConnectionsMappingService>()
                 .SingleInstance();
             builder.RegisterType<IglooSmartHomeContext>();
 

@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using IglooSmartHomeService.Services;
 using IglooSmartHomeService.SignalR;
 using Microsoft.Azure.Mobile.Server.Config;
 
@@ -7,14 +8,14 @@ namespace IglooSmartHomeService.Controllers
     [MobileAppController]
     public class DeviceConnectionController : ApiController
     {
-        private readonly ConnectionMapping<string> _deviceConnectionMapping;
+        private readonly ConnectionMapping<string> _connections;
 
-        public DeviceConnectionController(ConnectionMapping<string> deviceConnectionMapping)
+        public DeviceConnectionController(DeviceConnectionsMappingService connections)
         {
-            _deviceConnectionMapping = deviceConnectionMapping;
+            _connections = connections;
         }
 
         public IHttpActionResult Get()
-            => Ok(_deviceConnectionMapping.GetConnections());
+            => Ok(_connections.GetConnections());
     }
 }
