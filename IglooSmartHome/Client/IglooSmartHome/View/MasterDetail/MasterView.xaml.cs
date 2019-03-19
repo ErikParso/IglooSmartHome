@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using IglooSmartHome.SignalR;
 using System;
 
 using Xamarin.Forms;
@@ -18,6 +19,8 @@ namespace IglooSmartHome.View.MasterDetail
 
         private async void ProfileBar_LogoutClicked(object sender, EventArgs e)
         {
+            var signalRConnectionService = AppBase.CurrentAppContainer.Resolve<SignalRConnectionService>();
+            signalRConnectionService.StopConnection();
             var authenticationService = AppBase.CurrentAppContainer.Resolve<IAuthenticationService>();
             await authenticationService.Logout();
             AppBase.Current.MainPage = AppBase.CurrentAppContainer.Resolve<LoginPage>();

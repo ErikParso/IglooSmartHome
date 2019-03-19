@@ -18,12 +18,6 @@ namespace IglooSmartHome.SignalR
             _hubConnection.Headers.Add("ZUMO-API-VERSION", "2.0.0");
 
             UserConnectionHubProxy = _hubConnection.CreateHubProxy("UserConnectionHub");
-            AddHandlers();
-        }
-
-        private void AddHandlers()
-        {
-            _hubConnection.Closed += OnDisconnected;
         }
 
         public async Task StartConnection()
@@ -35,11 +29,6 @@ namespace IglooSmartHome.SignalR
         internal void StopConnection()
         {
             _hubConnection.Stop();
-        }
-
-        async void OnDisconnected()
-        {
-            await StartConnection();
         }
     }
 }
