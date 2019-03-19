@@ -9,7 +9,7 @@ namespace IglooSmartHomeDevice.Services
     {
         private HubConnection _hubConnection;
         private IHubProxy _deviceConnectionHubProxy;
-        private readonly AuthenticationService _authenticationService;      
+        private readonly AuthenticationService _authenticationService;
 
         public event EventHandler<string> OnLog;
 
@@ -18,7 +18,7 @@ namespace IglooSmartHomeDevice.Services
         {
             _authenticationService = authenticationService;
 
-            _hubConnection = new HubConnection(Environment.ServerAddress, new Dictionary<string, string> { { "deviceName", "rpi" } });
+            _hubConnection = new HubConnection(Environment.ServerAddress);
             _hubConnection.Headers.Add("ZUMO-API-VERSION", "2.0.0");
 
             _hubConnection.Closed += OnDisconnected;

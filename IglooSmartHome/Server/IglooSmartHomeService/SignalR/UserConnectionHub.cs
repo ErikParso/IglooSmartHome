@@ -65,9 +65,6 @@ namespace IglooSmartHomeService.SignalR
             return base.OnReconnected();
         }
 
-        private string GetCurrentUserId()
-            => ((ClaimsPrincipal)Context.User).FindFirst(ClaimTypes.NameIdentifier).Value;
-
         private IEnumerable<string> GetUserConnectionsSubscribedForDevice(int deviceId)
             => GetUsersSubscribedForDevice(deviceId)
                .SelectMany(userId => _userConnections.GetConnections(userId));
