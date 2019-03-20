@@ -123,7 +123,8 @@
     <Compile Include="BootstrapContainer.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Services\DeviceHttpClient.cs" />
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Credentials.cs" />
@@ -159,7 +160,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

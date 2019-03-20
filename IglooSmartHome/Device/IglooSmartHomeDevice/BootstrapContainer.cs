@@ -1,6 +1,9 @@
 ﻿using Autofac;
 using IglooSmartHomeDevice.RefitInterfaces;
 using IglooSmartHomeDevice.Services;
+using IglooSmartHomeDevice.ViewModels;
+using MetroLog;
+using MetroLog.Targets;
 using Refit;
 using System;
 using System.Net.Http;
@@ -14,29 +17,35 @@ namespace IglooSmartHomeDevice
         public static void Initialize()
         {
             var builder= new ContainerBuilder();
+            // Http
             builder.RegisterType<RefreshTokenHandler>()
                 .OnActivated(e => e.Instance.AuthenticationService = e.Context.Resolve<AuthenticationService>())
                 .SingleInstance();
             builder.RegisterType<DeviceHttpClient>()
                 .As<HttpClient>()
                 .SingleInstance();
-            builder.RegisterType<AuthenticationService>()
-                .SingleInstance();
+            // Refit
             builder.Register(c => RestService.For<IDeviceLoginService>(c.Resolve<HttpClient>()))
                 .SingleInstance();
             builder.Register(c => RestService.For<IDevicesService>(c.Resolve<HttpClient>()))
                 .SingleInstance();
-            builder.RegisterType<MainPage>()
+            // Services
+            builder.RegisterType<AuthenticationService>()
                 .SingleInstance();
             builder.RegisterType<DeviceConnectionService>()
                 .SingleInstance();
+            // Views
+            builder.RegisterType<MainPage>()
+                .SingleInstance();
+            // ViewModels
+            builder.RegisterType<MainPageViewModel>()
+                .SingleInstance();
+            // Logger
+            LogManagerFactory.DefaultConfiguration.AddTarget(LogLevel.Trace, LogLevel.Fatal, new StreamingFileTarget());
+            var logger = LogManagerFactory.DefaultLogManager.GetLogger("Log");
+            builder.RegisterInstance(logger);
 
             Instance = builder.Build();
-        }
-
-        private static object Func<T>()
-        {
-            throw new NotImplementedException();
         }
     }
 }
