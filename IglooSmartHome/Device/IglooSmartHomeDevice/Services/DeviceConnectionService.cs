@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.SignalR.Client;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IglooSmartHomeDevice.Services
@@ -75,10 +74,9 @@ namespace IglooSmartHomeDevice.Services
             OnLog(this, DateTime.Now + $": Connection error. {obj.Message}");
         }
 
-        async void OnDisconnected()
+        private void OnDisconnected()
         {
             OnLog(this, DateTime.Now + ": Connection closed.");
-            await StartConnection();
         }
     }
 }
