@@ -3,11 +3,9 @@ using Autofac.Integration.SignalR;
 using Autofac.Integration.WebApi;
 using Azure.Server.Utils.Email;
 using IglooSmartHome.AppStart;
-using IglooSmartHome.Controllers;
 using IglooSmartHome.DataObjects;
 using IglooSmartHome.Models;
 using IglooSmartHome.Services;
-using IglooSmartHomeService.Controllers;
 using IglooSmartHomeService.Services;
 using IglooSmartHomeService.SignalR;
 using Microsoft.AspNet.SignalR;
@@ -62,7 +60,6 @@ namespace IglooSmartHome.AppStart
         {
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterHubs(Assembly.GetExecutingAssembly());
 
             builder.RegisterType<SendgridService>()
                 .As<IEmailService<Account>>();
@@ -71,6 +68,13 @@ namespace IglooSmartHome.AppStart
             builder.RegisterType<UserConnectionsMappingService>()
                 .SingleInstance();
             builder.RegisterType<IglooSmartHomeContext>();
+
+            builder.RegisterType<UserConnectionHub>()
+                .ExternallyOwned()
+                .SingleInstance();
+            builder.RegisterType<DeviceConnectionHub>()
+                .ExternallyOwned()
+                .SingleInstance();
 
             return builder.Build();
         }

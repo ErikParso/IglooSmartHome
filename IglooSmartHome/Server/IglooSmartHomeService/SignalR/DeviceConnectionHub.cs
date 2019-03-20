@@ -1,13 +1,9 @@
-﻿using Autofac;
-using Azure.Server.Utils.Extensions;
+﻿using Azure.Server.Utils.Extensions;
 using IglooSmartHome.Models;
 using IglooSmartHomeService.Services;
 using Microsoft.AspNet.SignalR;
-using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace IglooSmartHomeService.SignalR
@@ -29,6 +25,8 @@ namespace IglooSmartHomeService.SignalR
         public override Task OnConnected()
         {
             var deviceId = Context.User.GetCurrentUserAccount(_context.Devices).Id;
+            Trace.TraceInformation(
+                $"Device with id '{deviceId}' was connected with connection id '{Context.ConnectionId}'");
             _connections.Add(deviceId, Context.ConnectionId);
             return base.OnConnected();
         }
@@ -36,6 +34,8 @@ namespace IglooSmartHomeService.SignalR
         public override Task OnDisconnected(bool stopCalled)
         {
             var deviceId = Context.User.GetCurrentUserAccount(_context.Devices).Id;
+            Trace.TraceInformation(
+                $"Device with id '{deviceId}' was disconnected with connection id '{Context.ConnectionId}'");
             _connections.Remove(deviceId, Context.ConnectionId);
             return base.OnDisconnected(stopCalled);
         }
