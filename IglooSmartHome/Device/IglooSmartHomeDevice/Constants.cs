@@ -1,6 +1,6 @@
 ﻿namespace IglooSmartHomeDevice
 {
-    public class Environment
+    public static class Constants
     {
         public const string ServerAddress = "https://igloosmarthome.azurewebsites.net";
     }

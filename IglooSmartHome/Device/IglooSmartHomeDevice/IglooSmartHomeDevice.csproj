@@ -121,8 +121,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BootstrapContainer.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Services\DeviceHttpClient.cs" />
-    <Compile Include="Environment.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

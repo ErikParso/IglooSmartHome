@@ -18,7 +18,7 @@ namespace IglooSmartHomeDevice.Services
         {
             _authenticationService = authenticationService;
 
-            _hubConnection = new HubConnection(Environment.ServerAddress);
+            _hubConnection = new HubConnection(Constants.ServerAddress);
             _hubConnection.Headers.Add("ZUMO-API-VERSION", "2.0.0");
 
             _hubConnection.Closed += OnDisconnected;
