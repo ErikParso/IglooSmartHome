@@ -1,4 +1,5 @@
 using Autofac;
+using Autofac.Integration.SignalR;
 using Autofac.Integration.WebApi;
 using Azure.Server.Utils.Email;
 using IglooSmartHome.AppStart;
@@ -6,6 +7,10 @@ using IglooSmartHome.Controllers;
 using IglooSmartHome.DataObjects;
 using IglooSmartHome.Models;
 using IglooSmartHome.Services;
+using IglooSmartHomeService.Controllers;
+using IglooSmartHomeService.Services;
+using IglooSmartHomeService.SignalR;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Azure.Mobile.Server;
 using Microsoft.Azure.Mobile.Server.Authentication;
 using Microsoft.Azure.Mobile.Server.Config;
@@ -24,17 +29,15 @@ namespace IglooSmartHome.AppStart
         public void Configuration(IAppBuilder app)
         {
             var container = GetInjectionContainer();
+            GlobalHost.DependencyResolver = new AutofacDependencyResolver(container);
 
-            var config = new HttpConfiguration() { DependencyResolver = new AutofacWebApiDependencyResolver(container) };
-            config.Formatters.JsonFormatter
-                .SerializerSettings
-                .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-            config.EnableSystemDiagnosticsTracing();
+            var config = new HttpConfiguration();
             ConfigureSwagger(config);
 
             app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(config);
             app.UseWebApi(config);
+            app.MapSignalR("/signalr", new HubConfiguration() { EnableDetailedErrors = true });
 
             new MobileAppConfiguration()
                 .UseDefaultConfiguration()
@@ -59,13 +62,16 @@ namespace IglooSmartHome.AppStart
         {
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterType<IglooSmartHomeContext>();
-            builder.RegisterType<ValuesController>();
-            builder.RegisterType<CustomRegistrationController>();
-            builder.RegisterType<CustomLoginController>();
-            builder.RegisterType<AccountsController>();
+            builder.RegisterHubs(Assembly.GetExecutingAssembly());
+
             builder.RegisterType<SendgridService>()
                 .As<IEmailService<Account>>();
+            builder.RegisterType<DeviceConnectionsMappingService>()
+                .SingleInstance();
+            builder.RegisterType<UserConnectionsMappingService>()
+                .SingleInstance();
+            builder.RegisterType<IglooSmartHomeContext>();
+
             return builder.Build();
         }
     }

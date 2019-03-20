@@ -38,14 +38,14 @@ namespace IglooSmartHome.Controllers
             switch (newAccount.Provider)
             {
                 case "google":
-                    newAccount.Name = this.GetCurrentUserClaim("name");
-                    newAccount.PhotoUrl = this.GetCurrentUserClaim("picture");
-                    newAccount.Email = this.GetCurrentUserClaim(ClaimTypes.Email);
+                    newAccount.Name = User.GetCurrentUserClaim("name");
+                    newAccount.PhotoUrl = User.GetCurrentUserClaim("picture");
+                    newAccount.Email = User.GetCurrentUserClaim(ClaimTypes.Email);
                     break;
                 case "facebook":
-                    newAccount.Name = this.GetCurrentUserClaim(ClaimTypes.Name);
+                    newAccount.Name = User.GetCurrentUserClaim(ClaimTypes.Name);
                     newAccount.PhotoUrl = $"https://graph.facebook.com/v3.2/{newAccount.Sid}/picture?type=large";
-                    newAccount.Email = this.GetCurrentUserClaim(ClaimTypes.Email);
+                    newAccount.Email = User.GetCurrentUserClaim(ClaimTypes.Email);
                     break;
                 case "Federation":
                     newAccount.Name = newAccount.Sid;

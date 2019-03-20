@@ -10,6 +10,11 @@
     Loaded="Page_Loaded">
 
     <Grid>
-
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+            <TextBlock TextWrapping="WrapWholeWords" Name="log" Text="{Binding DeviceConnectionServiceLog}"/>
+        </ScrollViewer>
+        <Button Content="Stop Connection" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Button_Click"/>
     </Grid>
 </Page>
