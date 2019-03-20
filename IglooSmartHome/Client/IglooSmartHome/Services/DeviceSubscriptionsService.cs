@@ -8,13 +8,6 @@ using Xamarin.Forms.Utils;
 
 namespace IglooSmartHome.Services
 {
-    public interface IDeviceSubscriptionService
-    {
-        event EventHandler<DeviceSubscription> NewDeviceSubscribed;
-        Task<IEnumerable<DeviceSubscription>> GetDeviceSubscriptionsAsync();
-        Task<DeviceSubscription> SubscribeToDeviceAsync(string deviceId, string customDeviceName);
-    }
-
     public class DeviceSubscriptionsService : IDeviceSubscriptionService
     {
         private readonly AuthMobileServiceClient _client;

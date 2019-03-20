@@ -9,13 +9,6 @@ using Xamarin.Forms.Utils;
 
 namespace IglooSmartHome.Services
 {
-    public interface IDeviceOnlineStatusService
-    {
-        event EventHandler<DeviceOnlineStatusChangedEventArgs> DeviceOnlineStatusChanged;
-
-        Task<bool> IsDeviceOnline(int deviceId);
-    }
-
     public class DeviceOnlineStatusService : IDeviceOnlineStatusService
     {
         private const string deviceOnlineStatusControllerName = "DeviceOnlineStatus";
