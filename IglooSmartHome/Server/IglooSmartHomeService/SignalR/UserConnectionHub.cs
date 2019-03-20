@@ -4,7 +4,6 @@ using IglooSmartHomeService.Services;
 using Microsoft.AspNet.SignalR;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace IglooSmartHomeService.SignalR
@@ -34,13 +33,11 @@ namespace IglooSmartHomeService.SignalR
         }
 
         private void NotifyDeviceOnline(object sender, int e)
-            => Clients.Clients(GetUserConnectionsSubscribedForDevice(e)
-                .ToList())
+            => Clients.Clients(GetUserConnectionsSubscribedForDevice(e))
                 .deviceOnline(e);
 
         private void NotifyDeviceOffline(object sender, int e)
-             => Clients.Clients(GetUserConnectionsSubscribedForDevice(e)
-                .ToList())
+            => Clients.Clients(GetUserConnectionsSubscribedForDevice(e))
                 .deviceOffline(e);
 
         public override Task OnConnected()
@@ -65,9 +62,10 @@ namespace IglooSmartHomeService.SignalR
             return base.OnReconnected();
         }
 
-        private IEnumerable<string> GetUserConnectionsSubscribedForDevice(int deviceId)
+        private List<string> GetUserConnectionsSubscribedForDevice(int deviceId)
             => GetUsersSubscribedForDevice(deviceId)
-               .SelectMany(userId => _userConnections.GetConnections(userId));
+                .SelectMany(userId => _userConnections.GetConnections(userId))
+                .ToList();
 
         private IEnumerable<int> GetUsersSubscribedForDevice(int deviceId)
             => _context.DeviceSubscriptions
