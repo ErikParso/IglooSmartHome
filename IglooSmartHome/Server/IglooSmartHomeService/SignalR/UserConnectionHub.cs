@@ -2,7 +2,9 @@
 using IglooSmartHome.Models;
 using IglooSmartHomeService.Services;
 using Microsoft.AspNet.SignalR;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,16 +35,42 @@ namespace IglooSmartHomeService.SignalR
         }
 
         private void NotifyDeviceOnline(object sender, int e)
-            => Clients.Clients(GetUserConnectionsSubscribedForDevice(e))
-                .deviceOnline(e);
+        {
+            try
+            {
+                var connectionIds = GetUserConnectionsSubscribedForDevice(e);
+                Trace.TraceInformation(
+                    $"Notifying users device with id '{e}' is online. User connections: {string.Join(", ", connectionIds)}");
+                Clients.Clients(connectionIds)
+                    .deviceOnline(e);
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError("Device online notification error:" + ex.Message);
+            }
+        }
 
         private void NotifyDeviceOffline(object sender, int e)
-            => Clients.Clients(GetUserConnectionsSubscribedForDevice(e))
-                .deviceOffline(e);
+        {
+            try
+            {
+                var connectionIds = GetUserConnectionsSubscribedForDevice(e);
+                Trace.TraceInformation(
+                    $"Notifying users device with id '{e}' is offline. User connections: {string.Join(", ", connectionIds)}");
+                Clients.Clients(connectionIds)
+                    .deviceOffline(e);
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError("Device online notification error:" + ex.Message);
+            }
+        }
 
         public override Task OnConnected()
         {
             var userId = Context.User.GetCurrentUserAccount(_context.Accounts).Id;
+            Trace.TraceInformation(
+                $"User with id '{userId}' is connected with connection id '{Context.ConnectionId}'");
             _userConnections.Add(userId, Context.ConnectionId);
             return base.OnConnected();
         }
@@ -50,6 +78,8 @@ namespace IglooSmartHomeService.SignalR
         public override Task OnDisconnected(bool stopCalled)
         {
             var userId = Context.User.GetCurrentUserAccount(_context.Accounts).Id;
+            Trace.TraceInformation(
+                $"User with id '{userId}' was disconnected with connection id '{Context.ConnectionId}'");
             _userConnections.Remove(userId, Context.ConnectionId);
             return base.OnDisconnected(stopCalled);
         }
