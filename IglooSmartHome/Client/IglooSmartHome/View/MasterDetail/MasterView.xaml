@@ -15,7 +15,8 @@
                              VerticalOptions="Start"
                              BackgroundColor="{StaticResource ProfileBarBackgroundColor}"/>
         <ScrollView Grid.Row="1">
-            <iglooControls:DeviceSubscriptionsControl x:Name="deviceSubscriptionsControl"/>
+            <iglooControls:DeviceSubscriptionsControl
+                BindingContext="{Binding DeviceSubscriptionsViewModel}"/>
         </ScrollView>
     </Grid>
 </ContentPage>

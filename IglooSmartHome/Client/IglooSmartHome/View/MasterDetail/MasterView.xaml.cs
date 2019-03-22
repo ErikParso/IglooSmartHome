@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using IglooSmartHome.SignalR;
+using IglooSmartHome.ViewModels;
 using System;
 
 using Xamarin.Forms;
@@ -19,18 +20,14 @@ namespace IglooSmartHome.View.MasterDetail
 
         private async void ProfileBar_LogoutClicked(object sender, EventArgs e)
         {
-            var signalRConnectionService = AppBase.CurrentAppContainer.Resolve<SignalRConnectionService>();
-            signalRConnectionService.StopConnection();
-            var authenticationService = AppBase.CurrentAppContainer.Resolve<IAuthenticationService>();
-            await authenticationService.Logout();
+            await ((MasterViewModel)BindingContext).LogoutAndStopConnection();
             AppBase.Current.MainPage = AppBase.CurrentAppContainer.Resolve<LoginPage>();
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await profileBar.LoadAccountInformation();
-            await deviceSubscriptionsControl.ReloadDevicesAsync();
+            await profileBar.Initialize();
         }
     }
 }

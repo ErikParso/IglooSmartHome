@@ -2,7 +2,8 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:IglooSmartHome.Models"
-             x:Class="IglooSmartHome.Controls.DeviceSubscriptionsControl">
+             x:Class="IglooSmartHome.Controls.DeviceSubscriptionsControl"
+             x:Name="deviceSubscriptionControl">
     <ContentView.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -24,7 +25,8 @@
                             </Grid.ColumnDefinitions>
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Tapped="DeviceSubscription_Tapped"
+                                    Command="{Binding BindingContext.SubscriptionSelectedCommand,
+                                                      Source={x:Reference deviceSubscriptionControl}}"
                                     CommandParameter="{Binding .}"/>
                             </Grid.GestureRecognizers>
 

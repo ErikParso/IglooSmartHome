@@ -27,6 +27,10 @@ namespace IglooSmartHome
                 .SingleInstance();
             builder.RegisterType<MasterDetailView>()
                 .SingleInstance();
+            builder.RegisterType<MasterView>()
+                .SingleInstance();
+            builder.RegisterType<DetailView>()
+                .SingleInstance();
         }
 
         private void RegisterViewModels(ContainerBuilder builder)
@@ -34,6 +38,16 @@ namespace IglooSmartHome
             builder.RegisterType<DeviceSubscriptionsViewModel>()
                 .SingleInstance();
             builder.RegisterType<DeviceSubscriptionPopupViewModel>()
+                .SingleInstance();
+            builder.RegisterType<MasterDetailViewModel>()
+                .SingleInstance();
+            builder.RegisterType<MasterViewModel>()
+                .SingleInstance();
+            builder.RegisterType<DetailViewViewModel>()
+                .SingleInstance();
+            builder.RegisterType<DeviceHeaderViewModel>()
+                .SingleInstance();
+            builder.RegisterType<DeviceControllerViewModel>()
                 .SingleInstance();
         }
 
@@ -44,6 +58,12 @@ namespace IglooSmartHome
                 .SingleInstance();
             builder.RegisterType<DeviceOnlineStatusService>()
                 .As<IDeviceOnlineStatusService>()
+                .SingleInstance();
+            builder.RegisterType<DeviceInformationService>()
+                .As<IDeviceInformationService>()
+                .SingleInstance();
+            builder.RegisterType<DeviceSelectionService>()
+                .As<IDeviceSelectionService>()
                 .SingleInstance();
             builder.RegisterType<SignalRConnectionService>()
                 .SingleInstance();
