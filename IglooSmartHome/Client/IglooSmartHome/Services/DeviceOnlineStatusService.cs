@@ -57,5 +57,10 @@ namespace IglooSmartHome.Services
             }
             return isOnline;
         }
+
+        public void ClearCache()
+        {
+            _deviceOnlineStatusDictionary.Clear();
+        }
     }
 }
