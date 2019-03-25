@@ -9,6 +9,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <controls:ProfileBar x:Name="profileBar" Grid.Row="0"
                              LogoutClicked="ProfileBar_LogoutClicked"
@@ -18,5 +19,6 @@
             <iglooControls:DeviceSubscriptionsControl
                 BindingContext="{Binding DeviceSubscriptionsViewModel}"/>
         </ScrollView>
+        <Button Grid.Row="2" Text="Connection log" Clicked="Button_Clicked"/>
     </Grid>
 </ContentPage>

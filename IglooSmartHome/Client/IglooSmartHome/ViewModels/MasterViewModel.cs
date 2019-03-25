@@ -20,11 +20,13 @@ namespace IglooSmartHome.ViewModels
 
         public MasterViewModel(
             DeviceSubscriptionsViewModel deviceSubscriptionsViewModel,
+            LogPopupViewModel logPopupViewModel,
             SignalRConnectionService signalRConnectionService,
             IAuthenticationService authenticationService,
             IDeviceOnlineStatusService deviceOnlineStatusService)
         {
             DeviceSubscriptionsViewModel = deviceSubscriptionsViewModel;
+            LogPopupViewModel = logPopupViewModel;
             _signalRConnectionService = signalRConnectionService;
             _authenticationService = authenticationService;
             this._deviceOnlineStatusService = deviceOnlineStatusService;
@@ -36,6 +38,7 @@ namespace IglooSmartHome.ViewModels
         #region Public properties
 
         public DeviceSubscriptionsViewModel DeviceSubscriptionsViewModel { get; private set; }
+        public LogPopupViewModel LogPopupViewModel { get; private set; }
 
         #endregion
 

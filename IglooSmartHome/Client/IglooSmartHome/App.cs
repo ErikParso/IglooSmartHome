@@ -4,6 +4,7 @@ using IglooSmartHome.SignalR;
 using IglooSmartHome.Themes;
 using IglooSmartHome.View;
 using IglooSmartHome.View.MasterDetail;
+using IglooSmartHome.View.PopupPages;
 using IglooSmartHome.ViewModels;
 using Xamarin.Forms.Utils;
 using Xamarin.Forms.Xaml;
@@ -31,6 +32,8 @@ namespace IglooSmartHome
                 .SingleInstance();
             builder.RegisterType<DetailView>()
                 .SingleInstance();
+            builder.RegisterType<LogPopupPage>()
+                .SingleInstance();
         }
 
         private void RegisterViewModels(ContainerBuilder builder)
@@ -49,6 +52,8 @@ namespace IglooSmartHome
                 .SingleInstance();
             builder.RegisterType<DeviceControllerViewModel>()
                 .SingleInstance();
+            builder.RegisterType<LogPopupViewModel>()
+                .SingleInstance();
         }
 
         private void RegisterServices(ContainerBuilder builder)
@@ -64,6 +69,9 @@ namespace IglooSmartHome
                 .SingleInstance();
             builder.RegisterType<DeviceSelectionService>()
                 .As<IDeviceSelectionService>()
+                .SingleInstance();
+            builder.RegisterType<InMemoryLogService>()
+                .As<ILogService>()
                 .SingleInstance();
             builder.RegisterType<SignalRConnectionService>()
                 .SingleInstance();

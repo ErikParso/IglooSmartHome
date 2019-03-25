@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using IglooSmartHome.SignalR;
+using IglooSmartHome.View.PopupPages;
 using IglooSmartHome.ViewModels;
+using Rg.Plugins.Popup.Services;
 using System;
 
 using Xamarin.Forms;
@@ -29,5 +31,9 @@ namespace IglooSmartHome.View.MasterDetail
             base.OnAppearing();
             await profileBar.Initialize();
         }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+            => await PopupNavigation.Instance.PushAsync(
+                new LogPopupPage(((MasterViewModel)BindingContext).LogPopupViewModel));
     }
 }

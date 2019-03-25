@@ -54,6 +54,9 @@
         <EmbeddedResource Update="View\PopupPages\DeviceSubscriptionPopupPage.xaml">
           <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
         </EmbeddedResource>
+        <EmbeddedResource Update="View\PopupPages\LogPopupPage.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
       <None Update="Themes\White.xaml">
