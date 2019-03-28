@@ -242,6 +242,7 @@
     <Compile Include="Controllers\Accounts\ValuesController.cs" />
     <Compile Include="Controllers\Accounts\VerificationController.cs" />
     <Compile Include="Controllers\Devices\DevicesController.cs" />
+    <Compile Include="Controllers\LightStatsController.cs" />
     <Compile Include="Controllers\SubscriptionController.cs" />
     <Compile Include="DataObjects\Account.cs" />
     <Compile Include="DataObjects\Device.cs" />
@@ -263,6 +264,9 @@
     <Compile Include="Services\UserConnectionsMappingService.cs" />
     <Compile Include="SignalR\ConnectionMapping.cs" />
     <Compile Include="SignalR\DeviceConnectionHub.cs" />
+    <Compile Include="SignalR\LightStatsHub.cs" />
+    <Compile Include="SignalR\LightStatsResponseListener.cs" />
+    <Compile Include="SignalR\SignalRResponseListener.cs" />
     <Compile Include="SignalR\UserConnectionHub.cs" />
   </ItemGroup>
   <ItemGroup>

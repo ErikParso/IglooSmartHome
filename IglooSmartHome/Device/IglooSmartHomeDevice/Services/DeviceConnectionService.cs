@@ -8,6 +8,7 @@ namespace IglooSmartHomeDevice.Services
     {
         private HubConnection _hubConnection;
         private IHubProxy _deviceConnectionHubProxy;
+        private IHubProxy _lightStatsHubProxy;
         private readonly AuthenticationService _authenticationService;
 
         public event EventHandler<string> OnLog;
@@ -26,9 +27,14 @@ namespace IglooSmartHomeDevice.Services
             _hubConnection.Reconnecting += Reconnecting;
             _hubConnection.Reconnected += Reconnected;
             _hubConnection.ConnectionSlow += ConnectionSlow;
-            _hubConnection.Received += Received;
 
             _deviceConnectionHubProxy = _hubConnection.CreateHubProxy("DeviceConnectionHub");
+            _lightStatsHubProxy = _hubConnection.CreateHubProxy("LightStatsHub");
+            _lightStatsHubProxy.On<Guid, string>("getLightState", (guid, parameter) =>
+            {
+                OnLog(this, DateTime.Now + $": {parameter} Light stats request with id {guid}");
+                _lightStatsHubProxy.Invoke("sendLightState", guid, "Lighs are on!");
+            });
         }
 
         public async Task StartConnection()
@@ -42,11 +48,6 @@ namespace IglooSmartHomeDevice.Services
         {
             OnLog(this, DateTime.Now + ": Disconnecting...");
             _hubConnection.Stop();
-        }
-
-        private void Received(string obj)
-        {
-            OnLog(this, DateTime.Now + $": Received " + obj);
         }
 
         private void ConnectionSlow()
