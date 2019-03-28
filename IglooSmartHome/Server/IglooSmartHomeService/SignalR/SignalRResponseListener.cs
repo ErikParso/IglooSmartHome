@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IglooSmartHomeService.SignalR
 {
-    public abstract class SignalRResponseListener<M,K,T,U> : Hub
+    public abstract class SignalRResponseListener<M, K, T, U> : Hub
         where M : ConnectionMapping<K>
     {
         private readonly Dictionary<Guid, TaskCompletionSource<T>> _taskCompletionSources;
@@ -18,12 +18,10 @@ namespace IglooSmartHomeService.SignalR
             _taskCompletionSources = new Dictionary<Guid, TaskCompletionSource<T>>();
         }
 
-        public bool TrySendMessageAndWaitForResponse(
+        public T SendMessageAndWaitForResponse(
             K connectionMappingKey,
-            U parameter,
-            out T result)
+            U parameter)
         {
-            var ret = false;
             var requestId = Guid.NewGuid();
             var tcs = new TaskCompletionSource<T>();
             _taskCompletionSources[requestId] = tcs;
@@ -34,20 +32,10 @@ namespace IglooSmartHomeService.SignalR
             Task.Delay(5000)
                 .ContinueWith(task => tcs.TrySetCanceled());
 
-            try
-            {
-                tcs.Task.Wait();
-                result = tcs.Task.Result;
-                ret = true;
-            }
-            catch (Exception)
-            {
-                result = default(T);
-                ret = false;
-            }
+            tcs.Task.Wait();
 
             _taskCompletionSources.Remove(requestId);
-            return ret;
+            return tcs.Task.Result;
         }
 
         public void setResponse(Guid requestId, T response)

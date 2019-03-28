@@ -17,8 +17,7 @@ namespace IglooSmartHomeService.Controllers
         // GET api/LightStats
         public string Get(int deviceId)
         {
-            _lightstatsHub.TrySendMessageAndWaitForResponse(deviceId, "param0002", out string result);
-            return result;
+            return _lightstatsHub.SendMessageAndWaitForResponse(deviceId, "param0002");
         }
     }
 }
