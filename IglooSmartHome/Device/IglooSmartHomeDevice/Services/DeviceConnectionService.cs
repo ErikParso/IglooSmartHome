@@ -30,10 +30,10 @@ namespace IglooSmartHomeDevice.Services
 
             _deviceConnectionHubProxy = _hubConnection.CreateHubProxy("DeviceConnectionHub");
             _lightStatsHubProxy = _hubConnection.CreateHubProxy("LightStatsHub");
-            _lightStatsHubProxy.On<Guid, string>("getLightState", (guid, parameter) =>
+            _lightStatsHubProxy.On<Guid, string>("getResponse", (guid, parameter) =>
             {
                 OnLog(this, DateTime.Now + $": {parameter} Light stats request with id {guid}");
-                _lightStatsHubProxy.Invoke("sendLightState", guid, "Lighs are on!");
+                _lightStatsHubProxy.Invoke("setResponse", guid, "Lighs are on!");
             });
         }
 

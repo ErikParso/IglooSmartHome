@@ -67,8 +67,6 @@ namespace IglooSmartHome.AppStart
                 .SingleInstance();
             builder.RegisterType<UserConnectionsMappingService>()
                 .SingleInstance();
-            builder.RegisterType<LightStatsResponseListener>()
-                .SingleInstance();
             builder.RegisterType<IglooSmartHomeContext>();
 
             builder.RegisterType<UserConnectionHub>()
