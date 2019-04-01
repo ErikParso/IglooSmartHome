@@ -23,7 +23,7 @@ namespace IglooSmartHome.ViewModels
 
         public MasterDetailViewModel(
             MasterViewModel masterViewModel,
-            DetailViewViewModel detailViewViewModel,
+            DetailViewModel detailViewViewModel,
             SignalRConnectionService signalRConnectionService,
             IDeviceSelectionService deviceSelectionService,
             IDeviceSubscriptionService deviceSubscriptionService)
@@ -63,7 +63,7 @@ namespace IglooSmartHome.ViewModels
         #region Public properties
 
         public MasterViewModel MasterViewModel { get; private set; }
-        public DetailViewViewModel DetailViewViewModel { get; private set; }
+        public DetailViewModel DetailViewViewModel { get; private set; }
 
         public bool IsMasterVisible
         {

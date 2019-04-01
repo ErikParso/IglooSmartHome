@@ -46,7 +46,7 @@ namespace IglooSmartHome
                 .SingleInstance();
             builder.RegisterType<MasterViewModel>()
                 .SingleInstance();
-            builder.RegisterType<DetailViewViewModel>()
+            builder.RegisterType<DetailViewModel>()
                 .SingleInstance();
             builder.RegisterType<DeviceHeaderViewModel>()
                 .SingleInstance();

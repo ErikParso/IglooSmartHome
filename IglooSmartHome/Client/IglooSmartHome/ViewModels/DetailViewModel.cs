@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace IglooSmartHome.ViewModels
 {
-    public class DetailViewViewModel
+    public class DetailViewModel
     {
-        public DetailViewViewModel(
+        public DetailViewModel(
             DeviceHeaderViewModel deviceHeaderViewModel,
             DeviceControllerViewModel deviceControllerViewModel)
         {
