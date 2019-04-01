@@ -236,6 +236,7 @@
     <Compile Include="Controllers\Accounts\AccountsController.cs" />
     <Compile Include="Controllers\Accounts\CustomLoginController.cs" />
     <Compile Include="Controllers\Accounts\CustomRegistrationController.cs" />
+    <Compile Include="Controllers\DeviceInformationController.cs" />
     <Compile Include="Controllers\DeviceOnlineStatusController.cs" />
     <Compile Include="Controllers\Devices\DeviceLoginController.cs" />
     <Compile Include="Controllers\Devices\DeviceRegistrationController.cs" />

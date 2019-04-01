@@ -50,7 +50,8 @@ namespace IglooSmartHome.ViewModels
             _deviceId = deviceId;
             if (deviceId.HasValue)
             {
-                DeviceName = await _deviceInformationService.GetDeviceName(deviceId.Value);
+                DeviceName = (await _deviceInformationService.GetDeviceInformationAsync(deviceId.Value))
+                    .CustomDeviceName;
                 IsOnline = await _deviceOnlineStatusService.IsDeviceOnline(deviceId.Value);
             }
             else

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using IglooSmartHome.Models;
 using System.Threading.Tasks;
 
 namespace IglooSmartHome.Services
 {
     public interface IDeviceInformationService
     {
-        Task<string> GetDeviceName(int deviceId);
+        Task<DeviceInformation> GetDeviceInformationAsync(int deviceId);
     }
 }
