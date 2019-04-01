@@ -3,14 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IglooSmartHome.View.MasterDetail.MasterDetailView"
              xmlns:pages="clr-namespace:IglooSmartHome.View.MasterDetail"
-             Appearing="MasterDetailPage_Appearing" IsPresented="{Binding IsMasterVisible, Mode=TwoWay}">
+             Appearing="MasterDetailPage_Appearing"
+             IsPresented="{Binding IsMasterVisible, Mode=TwoWay}">
   <MasterDetailPage.Master>
-    <pages:MasterView x:Name="MasterPage" BindingContext="{Binding MasterViewModel}"/>
+    <pages:MasterView BindingContext="{Binding MasterViewModel}"/>
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <NavigationPage>
       <x:Arguments>
-        <pages:DetailView x:Name="DetailView" BindingContext="{Binding DetailViewViewModel}"/>
+        <pages:DetailView BindingContext="{Binding DetailViewViewModel}"/>
       </x:Arguments>
     </NavigationPage>
   </MasterDetailPage.Detail>
