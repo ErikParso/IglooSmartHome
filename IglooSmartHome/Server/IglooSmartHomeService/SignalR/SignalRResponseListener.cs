@@ -18,6 +18,8 @@ namespace IglooSmartHomeService.SignalR
             _taskCompletionSources = new Dictionary<Guid, TaskCompletionSource<T>>();
         }
 
+        protected virtual int Timeout { get; } = 30_000;
+
         public T SendMessageAndWaitForResponse(
             K connectionMappingKey,
             U parameter)
@@ -29,7 +31,7 @@ namespace IglooSmartHomeService.SignalR
             Clients.Client(_connectionMapping.GetConnections(connectionMappingKey).First())
                 .getResponse(requestId, parameter);
 
-            Task.Delay(5000)
+            Task.Delay(Timeout)
                 .ContinueWith(task => tcs.TrySetCanceled());
 
             tcs.Task.Wait();
