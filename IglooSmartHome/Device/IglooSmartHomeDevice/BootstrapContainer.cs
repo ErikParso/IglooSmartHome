@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using IglooSmartHomeDevice.RefitInterfaces;
 using IglooSmartHomeDevice.Services;
+using IglooSmartHomeDevice.SignalR;
 using IglooSmartHomeDevice.ViewModels;
 using MetroLog;
 using MetroLog.Targets;
@@ -33,6 +34,9 @@ namespace IglooSmartHomeDevice
             builder.RegisterType<AuthenticationService>()
                 .SingleInstance();
             builder.RegisterType<DeviceConnectionService>()
+                .SingleInstance();
+            // Handlers
+            builder.RegisterType<LightStateSignalRRequestHandler>()
                 .SingleInstance();
             // Views
             builder.RegisterType<MainPage>()

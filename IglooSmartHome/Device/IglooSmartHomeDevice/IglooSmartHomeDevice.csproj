@@ -123,6 +123,8 @@
     <Compile Include="BootstrapContainer.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Services\DeviceHttpClient.cs" />
+    <Compile Include="SignalR\LightStateSignalRRequestHandler.cs" />
+    <Compile Include="SignalR\SignalRRequestHandler.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

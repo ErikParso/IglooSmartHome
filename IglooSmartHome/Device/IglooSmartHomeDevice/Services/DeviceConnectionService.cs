@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.SignalR.Client;
+﻿using IglooSmartHomeDevice.SignalR;
+using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Threading.Tasks;
 
@@ -6,40 +7,43 @@ namespace IglooSmartHomeDevice.Services
 {
     public class DeviceConnectionService
     {
-        private HubConnection _hubConnection;
-        private IHubProxy _deviceConnectionHubProxy;
-        private IHubProxy _lightStatsHubProxy;
+        private readonly HubConnection _hubConnection;
+        private readonly IHubProxy _deviceConnectionHubProxy;
         private readonly AuthenticationService _authenticationService;
+        private readonly LightStateSignalRRequestHandler _lightStateSignalRRequestHandler;
 
         public event EventHandler<string> OnLog;
 
         public DeviceConnectionService(
-            AuthenticationService authenticationService)
+            AuthenticationService authenticationService,
+            LightStateSignalRRequestHandler lightStateSignalRRequestHandler)
         {
             _authenticationService = authenticationService;
+            _lightStateSignalRRequestHandler = lightStateSignalRRequestHandler;
 
             _hubConnection = new HubConnection(Constants.ServerAddress);
             _hubConnection.Headers.Add("ZUMO-API-VERSION", "2.0.0");
+            _deviceConnectionHubProxy = _hubConnection.CreateHubProxy("DeviceConnectionHub");
 
+            AddHandlers();
+        }
+
+        private void AddHandlers()
+        {
             _hubConnection.Closed += OnDisconnected;
             _hubConnection.Error += OnError;
             _hubConnection.StateChanged += OnStateChanged;
             _hubConnection.Reconnecting += Reconnecting;
             _hubConnection.Reconnected += Reconnected;
             _hubConnection.ConnectionSlow += ConnectionSlow;
-
-            _deviceConnectionHubProxy = _hubConnection.CreateHubProxy("DeviceConnectionHub");
-            _lightStatsHubProxy = _hubConnection.CreateHubProxy("LightStatsHub");
-            _lightStatsHubProxy.On<Guid, string>("getResponse", (guid, parameter) =>
-            {
-                OnLog(this, DateTime.Now + $": {parameter} Light stats request with id {guid}");
-                _lightStatsHubProxy.Invoke("setResponse", guid, "Lighs are on!");
-            });
         }
 
         public async Task StartConnection()
         {
-            OnLog(this, DateTime.Now + ": Connecting...");
+            OnLog(this, DateTime.Now + ": Starting connection...");
+
+            _lightStateSignalRRequestHandler.InitializeHubProxy(_hubConnection);
+
             _hubConnection.Headers["X-ZUMO-AUTH"] = await _authenticationService.RefreshTokenAsync();
             await _hubConnection.Start();
         }
