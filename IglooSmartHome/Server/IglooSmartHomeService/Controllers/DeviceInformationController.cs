@@ -1,8 +1,11 @@
 ﻿using System.Linq;
+using System.Net;
 using System.Web.Http;
 using Azure.Server.Utils.Extensions;
 using Azure.Server.Utils.Results;
 using IglooSmartHome.Models;
+using IglooSmartHomeService.ExceptionFilters;
+using IglooSmartHomeService.Exceptions;
 using Microsoft.Azure.Mobile.Server.Config;
 
 namespace IglooSmartHomeService.Controllers
@@ -18,14 +21,13 @@ namespace IglooSmartHomeService.Controllers
         }
 
         [Authorize]
+        [ExceptionFilter]
         public IHttpActionResult GetDeviceInformation(int deviceId)
         {
             // Check if device exists.
             var device = _context.Devices.SingleOrDefault(d => d.Id == deviceId);
             if (device == null)
-            {
-                return BadRequest($"Device with id '{deviceId}' was not found.");
-            }
+                throw new DeviceNotFoundException(deviceId);
 
             // Check device information permission.
             var acc = User.GetCurrentUserAccount(_context.Accounts);

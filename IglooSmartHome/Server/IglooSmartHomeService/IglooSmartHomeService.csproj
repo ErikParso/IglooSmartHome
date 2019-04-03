@@ -249,6 +249,9 @@
     <Compile Include="DataObjects\Device.cs" />
     <Compile Include="DataObjects\DeviceSubscription.cs" />
     <Compile Include="DataObjects\SubscriptionRole.cs" />
+    <Compile Include="Exceptions\ExceptionFilterAttribute.cs" />
+    <Compile Include="Exceptions\DeviceNotFoundException.cs" />
+    <Compile Include="Exceptions\FilteredException.cs" />
     <Compile Include="Migrations\201903011616466_InitialMigration.cs" />
     <Compile Include="Migrations\201903011616466_InitialMigration.Designer.cs">
       <DependentUpon>201903011616466_InitialMigration.cs</DependentUpon>
