@@ -1,44 +1,25 @@
-﻿using System.Linq;
-using System.Net;
-using System.Web.Http;
-using Azure.Server.Utils.Extensions;
-using Azure.Server.Utils.Results;
-using IglooSmartHome.Models;
-using IglooSmartHomeService.ExceptionFilters;
-using IglooSmartHomeService.Exceptions;
+﻿using IglooSmartHomeService.ExceptionFilters;
+using IglooSmartHomeService.Services;
 using Microsoft.Azure.Mobile.Server.Config;
+using System.Web.Http;
 
 namespace IglooSmartHomeService.Controllers
 {
     [MobileAppController]
     public class DeviceInformationController : ApiController
     {
-        private readonly IglooSmartHomeContext _context;
+        private readonly DevicesService _devicesService;
 
-        public DeviceInformationController(IglooSmartHomeContext context)
+        public DeviceInformationController(DevicesService devicesService)
         {
-            _context = context;
+            _devicesService = devicesService;
         }
 
         [Authorize]
         [ExceptionFilter]
         public IHttpActionResult GetDeviceInformation(int deviceId)
         {
-            // Check if device exists.
-            var device = _context.Devices.SingleOrDefault(d => d.Id == deviceId);
-            if (device == null)
-                throw new DeviceNotFoundException(deviceId);
-
-            // Check device information permission.
-            var acc = User.GetCurrentUserAccount(_context.Accounts);
-            var subs = _context.DeviceSubscriptions
-                .SingleOrDefault(s => s.AccountId == acc.Id && s.DeviceId == deviceId);
-            if (subs == null)
-            {
-                return new ForbiddenResult(Request, $"You have no access to information about device with id '{deviceId}'.");
-            }
-
-            // Return device information.
+            var device = _devicesService.GetDeviceWithPermissions(deviceId, User);
             return Ok(new
             {
                 device.Id,

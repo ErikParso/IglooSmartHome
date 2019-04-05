@@ -249,6 +249,8 @@
     <Compile Include="DataObjects\Device.cs" />
     <Compile Include="DataObjects\DeviceSubscription.cs" />
     <Compile Include="DataObjects\SubscriptionRole.cs" />
+    <Compile Include="Exceptions\DeviceNotConnectedException.cs" />
+    <Compile Include="Exceptions\DevicePermissionException.cs" />
     <Compile Include="Exceptions\ExceptionFilterAttribute.cs" />
     <Compile Include="Exceptions\DeviceNotFoundException.cs" />
     <Compile Include="Exceptions\FilteredException.cs" />
@@ -264,6 +266,7 @@
     <Compile Include="Models\IglooSmartHomeContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DeviceConnectionsMappingService.cs" />
+    <Compile Include="Services\DevicesService.cs" />
     <Compile Include="Services\SendgridService.cs" />
     <Compile Include="Services\UserConnectionsMappingService.cs" />
     <Compile Include="SignalR\ConnectionMapping.cs" />

@@ -13,8 +13,9 @@ namespace IglooSmartHomeService.ExceptionFilters
                 context.Response = new HttpResponseMessage(filteredException.StatusCode)
                 {
                     ReasonPhrase = filteredException.Message,
-                    Content = new StringContent(filteredException.Message)
+                    Content = new StringContent(filteredException.Message),
                 };
+                context.Response.Headers.Add("filtered-exception", context.Exception.GetType().Name);
             }
         }
     }

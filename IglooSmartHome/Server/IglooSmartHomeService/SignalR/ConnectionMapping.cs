@@ -54,7 +54,7 @@ namespace IglooSmartHomeService.SignalR
                ? connections
                : Enumerable.Empty<string>();
 
-        public Dictionary<T, HashSet<string>> GetConnections()
-            => _connections;
+        public bool IsConnected(T key)
+            => GetConnections(key).Any();
     }
 }

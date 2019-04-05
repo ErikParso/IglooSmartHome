@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using IglooSmartHomeService.Exceptions;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,12 @@ namespace IglooSmartHomeService.SignalR
             var tcs = new TaskCompletionSource<T>();
             _taskCompletionSources[requestId] = tcs;
 
-            Clients.Client(_connectionMapping.GetConnections(connectionMappingKey).First())
+            var connection = _connectionMapping.GetConnections(connectionMappingKey)
+                .FirstOrDefault();
+            if (string.IsNullOrEmpty(connection))
+                throw new ConnectionNotFoundException<K>(connectionMappingKey);
+
+            Clients.Client(connection)
                 .getResponse(requestId, parameter);
 
             Task.Delay(Timeout)
