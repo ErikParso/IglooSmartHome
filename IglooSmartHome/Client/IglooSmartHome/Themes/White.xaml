@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IglooSmartHome.Themes.White">
+                    xmlns:converters="clr-namespace:Xamarin.Forms.Utils.Converters;assembly=Xamarin.Forms.Utils"
+                    x:Class="IglooSmartHome.Themes.White">
 
     <Color x:Key="PrimaryTextColor">#000000</Color>
     <Color x:Key="ProfileBarBackgroundColor">#80A8E0</Color>
@@ -11,5 +12,9 @@
 
     <x:String x:Key="KeyImage">key24Blue.png</x:String>
     <x:String x:Key="PlusImage">plus24Blue.png</x:String>
+    <x:String x:Key="SmartHome">smartHome.png</x:String>
+    <x:String x:Key="RpiPhoto">rpiPhoto.png</x:String>
+
+    <converters:InverseBooleanConverter x:Key="InverseBoolConverter"/>
 
 </ResourceDictionary>

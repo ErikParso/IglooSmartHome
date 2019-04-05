@@ -24,6 +24,12 @@
       </Compile>
     </ItemGroup>
     <ItemGroup>
+        <EmbeddedResource Update="Controls\DeviceController.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Controls\DeviceHeaderControl.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
         <EmbeddedResource Update="Controls\DeviceSubscriptionsControl.xaml">
           <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
         </EmbeddedResource>
@@ -46,6 +52,9 @@
           <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
         </EmbeddedResource>
         <EmbeddedResource Update="View\PopupPages\DeviceSubscriptionPopupPage.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="View\PopupPages\LogPopupPage.xaml">
           <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
         </EmbeddedResource>
     </ItemGroup>

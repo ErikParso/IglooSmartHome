@@ -9,5 +9,7 @@ namespace IglooSmartHome.Services
         event EventHandler<DeviceOnlineStatusChangedEventArgs> DeviceOnlineStatusChanged;
 
         Task<bool> IsDeviceOnline(int deviceId);
+
+        void ClearCache();
     }
 }

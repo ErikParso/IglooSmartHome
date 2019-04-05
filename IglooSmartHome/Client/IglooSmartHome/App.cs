@@ -4,6 +4,7 @@ using IglooSmartHome.SignalR;
 using IglooSmartHome.Themes;
 using IglooSmartHome.View;
 using IglooSmartHome.View.MasterDetail;
+using IglooSmartHome.View.PopupPages;
 using IglooSmartHome.ViewModels;
 using Xamarin.Forms.Utils;
 using Xamarin.Forms.Xaml;
@@ -27,6 +28,12 @@ namespace IglooSmartHome
                 .SingleInstance();
             builder.RegisterType<MasterDetailView>()
                 .SingleInstance();
+            builder.RegisterType<MasterView>()
+                .SingleInstance();
+            builder.RegisterType<DetailView>()
+                .SingleInstance();
+            builder.RegisterType<LogPopupPage>()
+                .SingleInstance();
         }
 
         private void RegisterViewModels(ContainerBuilder builder)
@@ -34,6 +41,18 @@ namespace IglooSmartHome
             builder.RegisterType<DeviceSubscriptionsViewModel>()
                 .SingleInstance();
             builder.RegisterType<DeviceSubscriptionPopupViewModel>()
+                .SingleInstance();
+            builder.RegisterType<MasterDetailViewModel>()
+                .SingleInstance();
+            builder.RegisterType<MasterViewModel>()
+                .SingleInstance();
+            builder.RegisterType<DetailViewModel>()
+                .SingleInstance();
+            builder.RegisterType<DeviceHeaderViewModel>()
+                .SingleInstance();
+            builder.RegisterType<DeviceControllerViewModel>()
+                .SingleInstance();
+            builder.RegisterType<LogPopupViewModel>()
                 .SingleInstance();
         }
 
@@ -44,6 +63,15 @@ namespace IglooSmartHome
                 .SingleInstance();
             builder.RegisterType<DeviceOnlineStatusService>()
                 .As<IDeviceOnlineStatusService>()
+                .SingleInstance();
+            builder.RegisterType<DeviceInformationService>()
+                .As<IDeviceInformationService>()
+                .SingleInstance();
+            builder.RegisterType<DeviceSelectionService>()
+                .As<IDeviceSelectionService>()
+                .SingleInstance();
+            builder.RegisterType<InMemoryLogService>()
+                .As<ILogService>()
                 .SingleInstance();
             builder.RegisterType<SignalRConnectionService>()
                 .SingleInstance();

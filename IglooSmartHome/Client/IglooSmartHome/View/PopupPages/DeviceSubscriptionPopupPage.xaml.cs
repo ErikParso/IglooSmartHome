@@ -1,20 +1,15 @@
 ﻿using Autofac;
 using IglooSmartHome.ViewModels;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
 using Xamarin.Forms.Utils;
 using Xamarin.Forms.Xaml;
 
 namespace IglooSmartHome.View.PopupPages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DeviceSubscriptionPopupPage : Rg.Plugins.Popup.Pages.PopupPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class DeviceSubscriptionPopupPage : PopupPage
     {
         private readonly DeviceSubscriptionPopupViewModel _viewModel;
 

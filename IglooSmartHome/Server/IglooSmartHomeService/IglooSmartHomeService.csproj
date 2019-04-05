@@ -236,17 +236,25 @@
     <Compile Include="Controllers\Accounts\AccountsController.cs" />
     <Compile Include="Controllers\Accounts\CustomLoginController.cs" />
     <Compile Include="Controllers\Accounts\CustomRegistrationController.cs" />
+    <Compile Include="Controllers\DeviceInformationController.cs" />
     <Compile Include="Controllers\DeviceOnlineStatusController.cs" />
     <Compile Include="Controllers\Devices\DeviceLoginController.cs" />
     <Compile Include="Controllers\Devices\DeviceRegistrationController.cs" />
     <Compile Include="Controllers\Accounts\ValuesController.cs" />
     <Compile Include="Controllers\Accounts\VerificationController.cs" />
     <Compile Include="Controllers\Devices\DevicesController.cs" />
+    <Compile Include="Controllers\LightStatsController.cs" />
     <Compile Include="Controllers\SubscriptionController.cs" />
     <Compile Include="DataObjects\Account.cs" />
     <Compile Include="DataObjects\Device.cs" />
     <Compile Include="DataObjects\DeviceSubscription.cs" />
     <Compile Include="DataObjects\SubscriptionRole.cs" />
+    <Compile Include="Exceptions\ClientNotRespondingException.cs" />
+    <Compile Include="Exceptions\ConnectionNotFoundException.cs" />
+    <Compile Include="Exceptions\DevicePermissionException.cs" />
+    <Compile Include="Exceptions\ExceptionFilterAttribute.cs" />
+    <Compile Include="Exceptions\DeviceNotFoundException.cs" />
+    <Compile Include="Exceptions\FilteredException.cs" />
     <Compile Include="Migrations\201903011616466_InitialMigration.cs" />
     <Compile Include="Migrations\201903011616466_InitialMigration.Designer.cs">
       <DependentUpon>201903011616466_InitialMigration.cs</DependentUpon>
@@ -259,10 +267,13 @@
     <Compile Include="Models\IglooSmartHomeContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DeviceConnectionsMappingService.cs" />
+    <Compile Include="Services\DevicesService.cs" />
     <Compile Include="Services\SendgridService.cs" />
     <Compile Include="Services\UserConnectionsMappingService.cs" />
     <Compile Include="SignalR\ConnectionMapping.cs" />
     <Compile Include="SignalR\DeviceConnectionHub.cs" />
+    <Compile Include="SignalR\LightStatsHub.cs" />
+    <Compile Include="SignalR\SignalRResponseListener.cs" />
     <Compile Include="SignalR\UserConnectionHub.cs" />
   </ItemGroup>
   <ItemGroup>

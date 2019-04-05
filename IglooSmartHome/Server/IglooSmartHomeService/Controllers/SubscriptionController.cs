@@ -45,7 +45,7 @@ namespace IglooSmartHomeService.Controllers
 
             var device = _context.Devices.SingleOrDefault(d => d.Sid == deviceCode);
             if (device == null)
-                return BadRequest($"Device with identified '{deviceCode}' is not registered.");
+                return BadRequest($"Device with identifier '{deviceCode}' is not registered.");
 
             var ownerSubscriptions = _context.DeviceSubscriptions
                 .Where(s => s.DeviceId == device.Id && s.Role == SubscriptionRole.Owner);

@@ -17,6 +17,7 @@ namespace IglooSmartHome.Services
 
         private readonly AuthMobileServiceClient _client;
         private readonly SignalRConnectionService _signalRConnectionService;
+        private readonly Dictionary<int, bool> _deviceOnlineStatusDictionary;
 
         public DeviceOnlineStatusService(
             AuthMobileServiceClient client,
@@ -24,6 +25,7 @@ namespace IglooSmartHome.Services
         {
             _client = client;
             _signalRConnectionService = signalRConnectionService;
+            _deviceOnlineStatusDictionary = new Dictionary<int, bool>();
             SubscribeSignalREvents();
         }
 
@@ -31,16 +33,34 @@ namespace IglooSmartHome.Services
         {
             _signalRConnectionService.UserConnectionHubProxy
                 .On<int>(deviceOfflineMessage, deviceId =>
-                    DeviceOnlineStatusChanged?.Invoke(this, new DeviceOnlineStatusChangedEventArgs(deviceId, false)));
+                {
+                    _deviceOnlineStatusDictionary[deviceId] = false;
+                    DeviceOnlineStatusChanged?.Invoke(this, new DeviceOnlineStatusChangedEventArgs(deviceId, false));
+                });
             _signalRConnectionService.UserConnectionHubProxy
                 .On<int>(deviceOnlineMessage, deviceId =>
-                    DeviceOnlineStatusChanged?.Invoke(this, new DeviceOnlineStatusChangedEventArgs(deviceId, true)));
+                {
+                    _deviceOnlineStatusDictionary[deviceId] = true;
+                    DeviceOnlineStatusChanged?.Invoke(this, new DeviceOnlineStatusChangedEventArgs(deviceId, true));
+                });
         }
 
         public event EventHandler<DeviceOnlineStatusChangedEventArgs> DeviceOnlineStatusChanged;
 
         public async Task<bool> IsDeviceOnline(int deviceId)
-            => await _client.InvokeApiAsync<bool>(deviceOnlineStatusControllerName, HttpMethod.Get,
-                new Dictionary<string, string>() { { "deviceId", deviceId.ToString() } });
+        {
+            if (!_deviceOnlineStatusDictionary.TryGetValue(deviceId, out bool isOnline))
+            {
+                isOnline = await _client.InvokeApiAsync<bool>(deviceOnlineStatusControllerName, HttpMethod.Get,
+                    new Dictionary<string, string>() { { "deviceId", deviceId.ToString() } });
+                _deviceOnlineStatusDictionary[deviceId] = isOnline;
+            }
+            return isOnline;
+        }
+
+        public void ClearCache()
+        {
+            _deviceOnlineStatusDictionary.Clear();
+        }
     }
 }
