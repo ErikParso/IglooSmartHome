@@ -249,7 +249,8 @@
     <Compile Include="DataObjects\Device.cs" />
     <Compile Include="DataObjects\DeviceSubscription.cs" />
     <Compile Include="DataObjects\SubscriptionRole.cs" />
-    <Compile Include="Exceptions\DeviceNotConnectedException.cs" />
+    <Compile Include="Exceptions\ClientNotRespondingException.cs" />
+    <Compile Include="Exceptions\ConnectionNotFoundException.cs" />
     <Compile Include="Exceptions\DevicePermissionException.cs" />
     <Compile Include="Exceptions\ExceptionFilterAttribute.cs" />
     <Compile Include="Exceptions\DeviceNotFoundException.cs" />

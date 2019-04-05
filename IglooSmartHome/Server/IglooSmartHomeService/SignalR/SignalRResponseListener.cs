@@ -2,6 +2,7 @@
 using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace IglooSmartHomeService.SignalR
             _taskCompletionSources = new Dictionary<Guid, TaskCompletionSource<T>>();
         }
 
-        protected virtual int Timeout { get; } = 30_000;
+        protected virtual int Timeout { get; } = 5_000;
 
         public T SendMessageAndWaitForResponse(
             K connectionMappingKey,
@@ -40,9 +41,20 @@ namespace IglooSmartHomeService.SignalR
             Task.Delay(Timeout)
                 .ContinueWith(task => tcs.TrySetCanceled());
 
-            tcs.Task.Wait();
+            try
+            {
+                tcs.Task.Wait();
+            }
+            catch (AggregateException ex)
+            {
+                if(ex.InnerException is TaskCanceledException)
+                    throw new ClientNotRespondingException<K>(connectionMappingKey, Timeout);
+            }
+            finally
+            {
+                _taskCompletionSources.Remove(requestId);
+            }
 
-            _taskCompletionSources.Remove(requestId);
             return tcs.Task.Result;
         }
 
