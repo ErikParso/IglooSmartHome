@@ -16,6 +16,7 @@ namespace IglooSmartHomeDevice.ViewModels
         #region Private fields
 
         private readonly AuthenticationService _authenticationService;
+        private readonly SmarthomeConfigurationService _smarthomeConfigurationService;
         private readonly DeviceConnectionService _deviceConnectionService;
         private readonly IDevicesService _devicesService;
         private readonly ILogger _logger;
@@ -28,11 +29,13 @@ namespace IglooSmartHomeDevice.ViewModels
 
         public MainPageViewModel(
             AuthenticationService authenticationService,
+            SmarthomeConfigurationService smarthomeConfigurationService,
             DeviceConnectionService deviceConnectionService,
             IDevicesService devicesService,
             ILogger logger)
         {
             _authenticationService = authenticationService;
+            _smarthomeConfigurationService = smarthomeConfigurationService;
             _deviceConnectionService = deviceConnectionService;
             _devicesService = devicesService;
             _logger = logger;

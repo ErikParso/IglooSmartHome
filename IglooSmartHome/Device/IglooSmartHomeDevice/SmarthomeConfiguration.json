@@ -1,0 +1,22 @@
+﻿{
+  "OnOffDevices": [
+    {
+      "Id": "testLed001",
+      "Name": "Test led red",
+      "Type": 0,
+      "InitialState": 0
+    },
+    {
+      "Id": "testLed002",
+      "Name": "Test led yellow",
+      "Type": 0,
+      "InitialState": 0
+    },
+    {
+      "Id": "testLed002",
+      "Name": "Test led green",
+      "Type": 0,
+      "InitialState": 0
+    }
+  ]
+}

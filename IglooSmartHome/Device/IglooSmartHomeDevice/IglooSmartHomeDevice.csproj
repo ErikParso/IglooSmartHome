@@ -122,7 +122,14 @@
     </Compile>
     <Compile Include="BootstrapContainer.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Model\SmarthomeConfiguration\OnOffDeviceConfiguration.cs" />
+    <Compile Include="Model\SmarthomeConfiguration\OnOffDeviceConfigurationGPIO.cs" />
+    <Compile Include="Model\SmarthomeConfiguration\OnOffDeviceConfigurationI2C.cs" />
+    <Compile Include="Model\SmarthomeConfiguration\OnOffDeviceState.cs" />
+    <Compile Include="Model\SmarthomeConfiguration\OnOffDeviceType.cs" />
+    <Compile Include="Model\SmarthomeConfiguration\SmarthomeConfiguration.cs" />
     <Compile Include="Services\DeviceHttpClient.cs" />
+    <Compile Include="Services\SmarthomeConfigurationService.cs" />
     <Compile Include="SignalR\LightStateSignalRRequestHandler.cs" />
     <Compile Include="SignalR\SignalRRequestHandler.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
@@ -189,6 +196,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="IglooSmartHomeDevice_TemporaryKey.pfx" />
+    <Content Include="SmarthomeConfiguration.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
