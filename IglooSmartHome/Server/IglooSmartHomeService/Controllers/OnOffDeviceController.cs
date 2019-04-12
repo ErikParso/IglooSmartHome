@@ -1,4 +1,5 @@
 ﻿using Azure.Server.Utils.Extensions;
+using IglooSmartHomeService.DataObjects;
 using IglooSmartHomeService.ExceptionFilters;
 using IglooSmartHomeService.Services;
 using IglooSmartHomeService.ViewModels;
@@ -40,6 +41,15 @@ namespace IglooSmartHomeService.Controllers
         {
             _onOffDevicesService.RegisterOnOffDevice(viewModel, User);
             return Ok("Device successfully registered");
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ExceptionFilter]
+        public IHttpActionResult UpdateOnOffDeviceState(string onOffDeviceId, OnOffDeviceState state)
+        {
+            _onOffDevicesService.UpdateOnOffDeviceState(onOffDeviceId, state, User);
+            return Ok("Device state updated.");
         }
     }
 }

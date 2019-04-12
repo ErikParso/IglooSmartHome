@@ -60,5 +60,13 @@ namespace IglooSmartHomeService.Services
             _context.OnOffDevices.Add(onOffDevice);
             _context.SaveChanges();
         }
+
+        public void UpdateOnOffDeviceState(string onOffDeviceId, OnOffDeviceState newState, IPrincipal user)
+        {
+            var onOffDevice = GetOnOffDevice(onOffDeviceId);
+            var device = _deviceService.GetDevice(onOffDevice.DeviceId, user);
+            onOffDevice.State = newState;
+            _context.SaveChanges();
+        }
     }
 }
