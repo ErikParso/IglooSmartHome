@@ -69,6 +69,8 @@ namespace IglooSmartHome.AppStart
                 .SingleInstance();
             builder.RegisterType<DevicesService>()
                 .SingleInstance();
+            builder.RegisterType<OnOffDevicesService>()
+                .SingleInstance();
             builder.RegisterType<IglooSmartHomeContext>();
 
             builder.RegisterType<UserConnectionHub>()

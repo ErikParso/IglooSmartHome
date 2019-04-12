@@ -19,7 +19,7 @@ namespace IglooSmartHomeService.Controllers
         [ExceptionFilter]
         public IHttpActionResult GetDeviceInformation(int deviceId)
         {
-            var device = _devicesService.GetDeviceWithPermissions(deviceId, User);
+            var device = _devicesService.GetDevice(deviceId, User);
             return Ok(new
             {
                 device.Id,

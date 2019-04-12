@@ -1,6 +1,8 @@
 ﻿using Azure.Server.Utils.Extensions;
+using IglooSmartHome.Controllers;
 using IglooSmartHome.DataObjects;
 using IglooSmartHome.Models;
+using IglooSmartHomeService.DataObjects;
 using IglooSmartHomeService.Exceptions;
 using System.Linq;
 using System.Security.Principal;
@@ -25,21 +27,40 @@ namespace IglooSmartHomeService.Services
                 return device;
         }
 
-        public Device GetDeviceWithPermissions(int deviceId, IPrincipal user)
+        public Device GetDevice(int deviceId, IPrincipal user)
         {
-            var account = user.GetCurrentUserAccount(_context.Accounts);
-            return GetDeviceWithPermissions(deviceId, account.Id);
+            var loginType = user.GetAuthenticatedByClaim();
+            if (string.IsNullOrEmpty(loginType) || loginType == nameof(CustomLoginController))
+            {
+                // User wants access device info.
+                var userAccount = user.GetCurrentUserAccount(_context.Accounts);
+                return GetDevice(deviceId, userAccount);
+            }
+            else
+            {
+                // Device wants access device info.
+                var deviceAccount = user.GetCurrentUserAccount(_context.Devices);
+                return GetDevice(deviceId, deviceAccount);
+            }
         }
 
-        public Device GetDeviceWithPermissions(int deviceId, int userId)
+        private Device GetDevice(int deviceId, Account account)
         {
             var device = GetDevice(deviceId);
             var subs = _context.DeviceSubscriptions
-                .SingleOrDefault(s => s.AccountId == userId && s.DeviceId == deviceId);
+                .SingleOrDefault(s => s.AccountId == account.Id && s.DeviceId == deviceId);
             if (subs == null)
                 throw new DevicePermissionException(deviceId);
             else
                 return device;
+        }
+
+        private Device GetDevice(int deviceId, Device account)
+        {
+            var device = GetDevice(deviceId);
+            if (account.Id != device.Id)
+                throw new DevicePermissionException(deviceId);
+            return device;
         }
     }
 }

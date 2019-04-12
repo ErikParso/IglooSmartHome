@@ -23,7 +23,7 @@ namespace IglooSmartHomeService.Controllers
         [ExceptionFilter]
         public IHttpActionResult Get(int deviceId)
         {
-             _devicesService.GetDeviceWithPermissions(deviceId, User);
+             _devicesService.GetDevice(deviceId, User);
             return Ok(_deviceConnectionsMappingService.IsConnected(deviceId));
         }
     }

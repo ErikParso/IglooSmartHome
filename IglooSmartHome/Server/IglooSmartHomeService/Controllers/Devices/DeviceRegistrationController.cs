@@ -1,6 +1,6 @@
 ﻿using Azure.Server.Utils.CustomAuthentication;
-using IglooSmartHome.DataObjects;
 using IglooSmartHome.Models;
+using IglooSmartHomeService.DataObjects;
 using Microsoft.Azure.Mobile.Server.Config;
 using System.Data.Entity;
 

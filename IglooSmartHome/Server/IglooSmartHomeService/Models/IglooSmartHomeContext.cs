@@ -32,6 +32,7 @@ namespace IglooSmartHome.Models
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Device> Devices { get; set; }
         public DbSet<DeviceSubscription> DeviceSubscriptions { get; set; }
+        public DbSet<OnOffDevice> OnOffDevices { get; set; }
     }
 
 }

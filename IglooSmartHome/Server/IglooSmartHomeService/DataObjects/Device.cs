@@ -1,6 +1,6 @@
 ﻿using Azure.Server.Utils.CustomAuthentication;
 
-namespace IglooSmartHome.DataObjects
+namespace IglooSmartHomeService.DataObjects
 {
     public class Device : AccountBase
     {
