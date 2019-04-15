@@ -122,6 +122,11 @@
     </Compile>
     <Compile Include="BootstrapContainer.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Extesions\ApiExceptionExtensions.cs" />
+    <Compile Include="Model\OnOffDeviceInfo.cs" />
+    <Compile Include="Model\OnOffDeviceState.cs" />
+    <Compile Include="Model\OnOffDeviceType.cs" />
+    <Compile Include="RefitInterfaces\IOnOffDeviceService.cs" />
     <Compile Include="Services\DeviceHttpClient.cs" />
     <Compile Include="SignalR\LightStateSignalRRequestHandler.cs" />
     <Compile Include="SignalR\SignalRRequestHandler.cs" />
@@ -133,7 +138,7 @@
     <Compile Include="Model\CustomLoginRequest.cs" />
     <Compile Include="Model\CustomLoginResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RefitInterfaces\IDeviceLogin.cs" />
+    <Compile Include="RefitInterfaces\IDevicesService.cs" />
     <Compile Include="RefitInterfaces\IDeviceLoginService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\DeviceConnectionService.cs" />
