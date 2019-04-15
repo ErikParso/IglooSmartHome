@@ -30,12 +30,14 @@ namespace IglooSmartHomeDevice
                 .SingleInstance();
             builder.Register(c => RestService.For<IDevicesService>(c.Resolve<HttpClient>()))
                 .SingleInstance();
-            builder.Register(c => RestService.For<IOnOffDeviceService>(c.Resolve<HttpClient>()))
+            builder.Register(c => RestService.For<IOnOffDeviceRefitService>(c.Resolve<HttpClient>()))
                 .SingleInstance();
             // Services
             builder.RegisterType<AuthenticationService>()
                 .SingleInstance();
             builder.RegisterType<DeviceConnectionService>()
+                .SingleInstance();
+            builder.RegisterType<SmarthomeConfigurationService>()
                 .SingleInstance();
             // Handlers
             builder.RegisterType<LightStateSignalRRequestHandler>()

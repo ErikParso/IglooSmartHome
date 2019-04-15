@@ -18,9 +18,9 @@ namespace IglooSmartHomeDevice.ViewModels
         #region Private fields
 
         private readonly AuthenticationService _authenticationService;
+        private readonly SmarthomeConfigurationService _smarthomeConfigurationService;
         private readonly DeviceConnectionService _deviceConnectionService;
         private readonly IDevicesService _devicesService;
-        private readonly IOnOffDeviceService _onOffDeviceService;
         private readonly ILogger _logger;
         private readonly StringBuilder _deviceConnectionServiceLog;
 
@@ -31,15 +31,15 @@ namespace IglooSmartHomeDevice.ViewModels
 
         public MainPageViewModel(
             AuthenticationService authenticationService,
+            SmarthomeConfigurationService smarthomeConfigurationService,
             DeviceConnectionService deviceConnectionService,
             IDevicesService devicesService,
-            IOnOffDeviceService onOffDeviceService,
             ILogger logger)
         {
             _authenticationService = authenticationService;
+            _smarthomeConfigurationService = smarthomeConfigurationService;
             _deviceConnectionService = deviceConnectionService;
             _devicesService = devicesService;
-            _onOffDeviceService = onOffDeviceService;
             _logger = logger;
             _deviceConnectionServiceLog = new StringBuilder();
 
@@ -83,15 +83,6 @@ namespace IglooSmartHomeDevice.ViewModels
         {
             await _authenticationService.LoginAsync();
             var info = await _devicesService.GetDeviceInfoAsync();
-            try
-            {
-                var onOffDeviceinfo = await _onOffDeviceService.GetOnOffDeviceInfoAsync("aaa");
-            }
-            catch (ApiException e)
-            {
-                var filteredExceptionName = e.GetFilteredExceptionName();
-            }
-
             await _deviceConnectionService.StartConnection();
         }
 
