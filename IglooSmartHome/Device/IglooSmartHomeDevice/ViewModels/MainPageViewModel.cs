@@ -19,6 +19,7 @@ namespace IglooSmartHomeDevice.ViewModels
 
         private readonly AuthenticationService _authenticationService;
         private readonly SmarthomeConfigurationService _smarthomeConfigurationService;
+        private readonly OnOffDevicesService _onOffDevicesService;
         private readonly DeviceConnectionService _deviceConnectionService;
         private readonly IDevicesService _devicesService;
         private readonly ILogger _logger;
@@ -32,12 +33,14 @@ namespace IglooSmartHomeDevice.ViewModels
         public MainPageViewModel(
             AuthenticationService authenticationService,
             SmarthomeConfigurationService smarthomeConfigurationService,
+            OnOffDevicesService onOffDevicesService,
             DeviceConnectionService deviceConnectionService,
             IDevicesService devicesService,
             ILogger logger)
         {
             _authenticationService = authenticationService;
             _smarthomeConfigurationService = smarthomeConfigurationService;
+            _onOffDevicesService = onOffDevicesService;
             _deviceConnectionService = deviceConnectionService;
             _devicesService = devicesService;
             _logger = logger;
@@ -84,6 +87,8 @@ namespace IglooSmartHomeDevice.ViewModels
             await _authenticationService.LoginAsync();
             var info = await _devicesService.GetDeviceInfoAsync();
             await _deviceConnectionService.StartConnection();
+            foreach (var onOffDevice in _smarthomeConfigurationService.Configuration.OnOffDevices)
+                await _onOffDevicesService.GetOnOffDeviceState(onOffDevice.Id);
         }
 
         public void Disconnect()

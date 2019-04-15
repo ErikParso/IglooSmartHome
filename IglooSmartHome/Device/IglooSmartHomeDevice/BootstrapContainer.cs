@@ -39,6 +39,8 @@ namespace IglooSmartHomeDevice
                 .SingleInstance();
             builder.RegisterType<SmarthomeConfigurationService>()
                 .SingleInstance();
+            builder.RegisterType<OnOffDevicesService>()
+                .SingleInstance();
             // Handlers
             builder.RegisterType<LightStateSignalRRequestHandler>()
                 .SingleInstance();

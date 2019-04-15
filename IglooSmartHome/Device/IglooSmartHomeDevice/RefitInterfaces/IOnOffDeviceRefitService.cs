@@ -9,5 +9,8 @@ namespace IglooSmartHomeDevice.RefitInterfaces
         [Get("/api/OnOffDevice?onOffDeviceId={onOffDeviceId}")]
         Task<OnOffDeviceInfo> GetOnOffDeviceInfoAsync(string onOffDeviceId);
 
+        [Put("/api/OnOffDevice")]
+        Task<string> RegisterOnOffDeviceAsync([Body]OnOffDeviceViewModel onOffDeviceId);
+
     }
 }
