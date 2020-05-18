@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IglooSmartHomeService", "IglooSmartHomeService\IglooSmartHomeService.csproj", "{209FA716-A7AD-4095-BD70-C8710FC66FA7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure.Server.Utils.Communication", "..\..\..\Xamarin-Utils\Xamarin.Utils\Azure.Server.Utils.Communication\Azure.Server.Utils.Communication.csproj", "{B2BBD46F-41B4-4E43-94C9-AF679AF70504}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure.Server.Utils", "..\..\..\Xamarin-Utils\Xamarin.Utils\Azure.Server.Utils\Azure.Server.Utils.csproj", "{F7E4690B-124B-49AB-A14E-EC8FC8786C64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Igloo.SmartHome.Server", "Igloo.SmartHome.Server\Igloo.SmartHome.Server.csproj", "{D37D1224-2E5A-4F4F-873E-15AF0235291D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +17,10 @@ Global
 		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2BBD46F-41B4-4E43-94C9-AF679AF70504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2BBD46F-41B4-4E43-94C9-AF679AF70504}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2BBD46F-41B4-4E43-94C9-AF679AF70504}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2BBD46F-41B4-4E43-94C9-AF679AF70504}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7E4690B-124B-49AB-A14E-EC8FC8786C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7E4690B-124B-49AB-A14E-EC8FC8786C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7E4690B-124B-49AB-A14E-EC8FC8786C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7E4690B-124B-49AB-A14E-EC8FC8786C64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D37D1224-2E5A-4F4F-873E-15AF0235291D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D37D1224-2E5A-4F4F-873E-15AF0235291D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D37D1224-2E5A-4F4F-873E-15AF0235291D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D37D1224-2E5A-4F4F-873E-15AF0235291D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

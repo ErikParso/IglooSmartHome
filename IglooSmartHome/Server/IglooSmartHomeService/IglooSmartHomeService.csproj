@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IglooSmartHomeService</RootNamespace>
     <AssemblyName>IglooSmartHomeService</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -302,16 +302,6 @@
   <ItemGroup>
     <Folder Include="Controllers\Connection\" />
     <Folder Include="ViewModels\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Xamarin-Utils\Xamarin.Utils\Azure.Server.Utils.Communication\Azure.Server.Utils.Communication.csproj">
-      <Project>{b2bbd46f-41b4-4e43-94c9-af679af70504}</Project>
-      <Name>Azure.Server.Utils.Communication</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Xamarin-Utils\Xamarin.Utils\Azure.Server.Utils\Azure.Server.Utils.csproj">
-      <Project>{f7e4690b-124b-49ab-a14e-ec8fc8786c64}</Project>
-      <Name>Azure.Server.Utils</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903011616466_InitialMigration.resx">
