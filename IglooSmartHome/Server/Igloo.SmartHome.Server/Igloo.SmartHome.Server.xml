@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Igloo.SmartHome.Server</name>
+    </assembly>
+    <members>
+        <member name="M:Igloo.SmartHome.Server.Controller.UserController.RegisterUser(System.String)">
+            <summary>
+            Registers user.
+            </summary>
+            <param name="name">User name.</param>
+        </member>
+    </members>
+</doc>

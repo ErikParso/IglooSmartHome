@@ -17,7 +17,11 @@ namespace Igloo.SmartHome.Server.Controller
 			this.dbContext = dbContext;
 		}
 
-		[Route("register/{name}")]
+		/// <summary>
+		/// Registers user.
+		/// </summary>
+		/// <param name="name">User name.</param>
+		[HttpPost("register/{name}")]
 		public async Task RegisterUser(string name)
 		{
 			await dbContext.Users.AddAsync(new User
