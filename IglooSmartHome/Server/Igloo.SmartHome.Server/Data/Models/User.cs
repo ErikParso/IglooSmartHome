@@ -12,5 +12,7 @@ namespace Igloo.SmartHome.Server.Data.Models
 		public string Sid { get; set; }
 
 		public string Provider { get; set; }
+
+		public string Name { get; set; }
 	}
 }

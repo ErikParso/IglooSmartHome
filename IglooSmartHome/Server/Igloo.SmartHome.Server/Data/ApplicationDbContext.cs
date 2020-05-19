@@ -11,7 +11,7 @@ namespace Igloo.SmartHome.Server.Data
 
 		}
 
-		public DbSet<User> Accounts { get; set; }
+		public DbSet<User> Users { get; set; }
 		public DbSet<Device> Devices { get; set; }
 		public DbSet<DeviceSubscription> DeviceSubscriptions { get; set; }
 	}

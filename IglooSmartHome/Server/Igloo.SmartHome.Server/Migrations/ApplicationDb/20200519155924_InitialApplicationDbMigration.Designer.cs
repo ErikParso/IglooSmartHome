@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Igloo.SmartHome.Server.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200518162314_InitialApplicationDbMigration")]
+    [Migration("20200519155924_InitialApplicationDbMigration")]
     partial class InitialApplicationDbMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,20 +45,20 @@ namespace Igloo.SmartHome.Server.Migrations.ApplicationDb
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
-
                     b.Property<int>("DeviceId")
                         .HasColumnType("int");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
                     b.HasIndex("DeviceId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("DeviceSubscriptions");
                 });
@@ -70,6 +70,9 @@ namespace Igloo.SmartHome.Server.Migrations.ApplicationDb
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Provider")
                         .HasColumnType("nvarchar(max)");
 
@@ -78,20 +81,20 @@ namespace Igloo.SmartHome.Server.Migrations.ApplicationDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Accounts");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Igloo.SmartHome.Server.Data.Models.DeviceSubscription", b =>
                 {
-                    b.HasOne("Igloo.SmartHome.Server.Data.Models.User", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Igloo.SmartHome.Server.Data.Models.Device", "Device")
                         .WithMany()
                         .HasForeignKey("DeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Igloo.SmartHome.Server.Data.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

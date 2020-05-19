@@ -7,20 +7,6 @@ namespace Igloo.SmartHome.Server.Migrations.ApplicationDb
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Accounts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Sid = table.Column<string>(nullable: true),
-                    Provider = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Accounts", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Devices",
                 columns: table => new
                 {
@@ -35,12 +21,27 @@ namespace Igloo.SmartHome.Server.Migrations.ApplicationDb
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Sid = table.Column<string>(nullable: true),
+                    Provider = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DeviceSubscriptions",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AccountId = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: false),
                     DeviceId = table.Column<int>(nullable: false),
                     Role = table.Column<int>(nullable: false)
                 },
@@ -48,28 +49,28 @@ namespace Igloo.SmartHome.Server.Migrations.ApplicationDb
                 {
                     table.PrimaryKey("PK_DeviceSubscriptions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DeviceSubscriptions_Accounts_AccountId",
-                        column: x => x.AccountId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_DeviceSubscriptions_Devices_DeviceId",
                         column: x => x.DeviceId,
                         principalTable: "Devices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DeviceSubscriptions_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DeviceSubscriptions_AccountId",
-                table: "DeviceSubscriptions",
-                column: "AccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeviceSubscriptions_DeviceId",
                 table: "DeviceSubscriptions",
                 column: "DeviceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeviceSubscriptions_UserId",
+                table: "DeviceSubscriptions",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -78,10 +79,10 @@ namespace Igloo.SmartHome.Server.Migrations.ApplicationDb
                 name: "DeviceSubscriptions");
 
             migrationBuilder.DropTable(
-                name: "Accounts");
+                name: "Devices");
 
             migrationBuilder.DropTable(
-                name: "Devices");
+                name: "Users");
         }
     }
 }

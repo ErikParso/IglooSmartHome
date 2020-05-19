@@ -3,22 +3,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Igloo.SmartHome.Server.Data.Models
 {
-    public class DeviceSubscription
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+	public class DeviceSubscription
+	{
+		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public int Id { get; set; }
 
-        [ForeignKey(nameof(User))]
-        public int AccountId { get; set; }
+		[ForeignKey(nameof(User))]
+		public int UserId { get; set; }
 
-        public User Account { get; set; }
+		public User User { get; set; }
 
-        [ForeignKey(nameof(Device))]
-        public int DeviceId { get; set; }
+		[ForeignKey(nameof(Device))]
+		public int DeviceId { get; set; }
 
-        public Device Device { get; set; }
+		public Device Device { get; set; }
 
-        public SubscriptionRole Role { get; set; }
-    }
+		public SubscriptionRole Role { get; set; }
+	}
 }
