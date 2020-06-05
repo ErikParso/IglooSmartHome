@@ -259,3 +259,4 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+IglooSmartHome/Client/igloo-smarthome-app/igloo-smarthome-app-win32-x64/**

@@ -1,10 +1,13 @@
 {
   "name": "igloo-smarthome-app",
   "version": "0.0.0",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o --watch",
     "build": "ng build",
+    "build-win32": "tsc main.ts && ng build --base-href ./ && electron-packager . --platform=win32",
+    "electron": "tsc main.ts && ng build --base-href ./ && electron .",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -30,10 +33,12 @@
     "@angular-devkit/build-angular": "~0.901.7",
     "@angular/cli": "~9.1.7",
     "@angular/compiler-cli": "~9.1.9",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "electron": "^9.0.2",
+    "electron-packager": "^14.2.1",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~5.0.0",
