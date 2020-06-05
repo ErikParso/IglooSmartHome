@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './reactive-state/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -10,9 +12,15 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([AppEffects, ConnectionsEffects]),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+
+ }
