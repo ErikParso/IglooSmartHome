@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './reactive-state/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './reactive-state/app.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AppEffects, ConnectionsEffects]),
+    EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument()
   ],
   providers: [],

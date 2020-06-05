@@ -1,2 +1,7 @@
 This is app component.
+<ng-container *ngIf="version$ | async as version">
+    <div *ngIf="version.length">
+        {{version}}
+    </div>
+</ng-container>
 <router-outlet></router-outlet>

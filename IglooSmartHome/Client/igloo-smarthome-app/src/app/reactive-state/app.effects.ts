@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
-import { map, mergeMap, catchError, tap } from 'rxjs/operators';
-import { createEffect, ofType, Actions } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { map, mergeMap, catchError } from 'rxjs/operators';
+import { VersionService } from '../services/version.service';
 import * as actions from './app.actions';
-import { createAction } from '@ngrx/store';
 import { of } from 'rxjs';
-
 
 @Injectable()
 export class AppEffects {
-    loadVersions$ = createEffect(() => this.actions$.pipe(
-        ofType(actions.loadVersions),
-        mergeMap(() => this.versionService.getServiceVersions()
-          .pipe(
-            map(versionInfo => actions.loadVersionsSuccess(versionInfo))
-          ))
-      ));
+  loadVersions$ = createEffect(() => this.actions$.pipe(
+    ofType(actions.loadVersion),
+    mergeMap(() => this.versionService.getServiceVersions()
+      .pipe(
+        map(version => actions.loadVersionSuccess({ version })),
+        catchError(error => of(actions.loadVersionError({error})))
+      ))
+  ));
 
-      constructor(
-        private actions$: Actions
-      ) { }
+  constructor(
+    private actions$: Actions,
+    private versionService: VersionService
+  ) { }
 }
