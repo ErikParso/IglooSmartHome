@@ -1,8 +1,9 @@
-import { createSelector, createReducer, on, ActionReducerMap } from '@ngrx/store';
+import { ActionReducerMap, createReducer, createSelector, on } from '@ngrx/store';
 import * as actions from './app.actions';
 
 export interface AppState {
     versionInfo: VersionInfo;
+    userInfo: UserInfo;
 }
 
 export interface VersionInfo {
@@ -11,16 +12,34 @@ export interface VersionInfo {
     error: Error;
 }
 
+export interface UserInfo {
+    isAuthenticated: boolean;
+    token: string;
+    userData: any;
+}
+
 export const initialVersionInfo: VersionInfo = {
     version: "",
     loading: false,
     error: null
 };
 
+export const initialUserInfo: UserInfo = {
+    isAuthenticated: false,
+    token: null,
+    userData: null
+};
+
 export const versionInfoSelector = (state: AppState) => state.versionInfo;
 export const versionSelector = createSelector(
     versionInfoSelector,
     versionInfo => versionInfo.version
+);
+
+export const userInfoSelector = (state: AppState) => state.userInfo;
+export const isAuthenticatedSelector = createSelector(
+    userInfoSelector,
+    userInfo => userInfo.isAuthenticated
 );
 
 const reducerVersionInfo = createReducer<VersionInfo>(
@@ -30,6 +49,13 @@ const reducerVersionInfo = createReducer<VersionInfo>(
     on(actions.loadVersionError, (state, { error }) => ({ ...state, loading: false, error }))
 );
 
+const reduceUserInfo = createReducer<UserInfo>(
+    initialUserInfo,
+    on(actions.authenticate, state => ({ ...state })),
+    on(actions.authenticateSuccess, (state, { isAuthenticated, token, userData }) => ({ ...state, isAuthenticated, token, userData })),
+);
+
 export const reducers: ActionReducerMap<AppState> = {
-    versionInfo: reducerVersionInfo
+    versionInfo: reducerVersionInfo,
+    userInfo: reduceUserInfo,
 };

@@ -1,7 +1,9 @@
 This is app component.
-<ng-container *ngIf="version$ | async as version">
-    <div *ngIf="version.length">
-        {{version}}
-    </div>
-</ng-container>
-<router-outlet></router-outlet>
+
+<div *ngIf="isAuthenticated$ | async">
+    <button (click)="logout()">Logout</button>
+    <router-outlet></router-outlet>
+</div>
+<div *ngIf="!(isAuthenticated$ | async)">
+    <button (click)="login()">Login</button>
+</div>
