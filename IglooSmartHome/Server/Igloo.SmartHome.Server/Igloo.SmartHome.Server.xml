@@ -4,11 +4,10 @@
         <name>Igloo.SmartHome.Server</name>
     </assembly>
     <members>
-        <member name="M:Igloo.SmartHome.Server.Controller.UserController.RegisterUser(System.String)">
+        <member name="M:Igloo.SmartHome.Server.Controller.UserController.Get">
             <summary>
-            Registers user.
+            Registers user in database and gets user info.
             </summary>
-            <param name="name">User name.</param>
         </member>
     </members>
 </doc>

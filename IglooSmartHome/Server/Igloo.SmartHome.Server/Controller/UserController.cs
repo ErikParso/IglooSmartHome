@@ -20,15 +20,14 @@ namespace Igloo.SmartHome.Server.Controller
 		}
 
 		/// <summary>
-		/// Registers user.
+		/// Registers user in database and gets user info.
 		/// </summary>
-		/// <param name="name">User name.</param>
-		[HttpPost("register/{name}")]
-		public async Task<User> RegisterUser(string name)
+		[HttpGet]
+		public async Task<User> Get()
 		{
 			var user = new User
 			{
-				Name = name,
+				Name = "tets",
 				Provider = "google",
 				Sid = Guid.NewGuid().ToString()
 			};

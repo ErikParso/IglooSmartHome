@@ -9,17 +9,18 @@ import { AppEffects } from './reactive-state/app.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule, LogLevel, OidcConfigService, OidcSecurityService } from 'angular-auth-oidc-client';
+import { environment } from 'src/environments/environment';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
       oidcConfigService.withConfig({
-          stsServer: 'http://localhost:5000',
-          redirectUrl: 'http://localhost:4200/smarthome',
-          postLogoutRedirectUri: 'http://localhost:4200/smarthome',
+          stsServer: environment.oidcClient.identityServerUrl,
+          redirectUrl: `${window.location.origin}/smarthome`,
+          postLogoutRedirectUri: `${window.location.origin}/smarthome`,
           clientId: 'iglooSmartHomeClient',
           scope: 'openid profile email iglooSmartHomeApi',
           responseType: 'code',
-          logLevel: LogLevel.Debug,
+          logLevel: environment.oidcClient.logLevel,
       });
 }
 
