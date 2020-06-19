@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "igloo-smarthome-app"
+    }
+  },
+  "defaultProject": "igloo-smarthome-app",
+  "cli": {
+    "defaultCollection": "@nativescript/schematics"
+  }
 }
