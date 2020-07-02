@@ -263,3 +263,4 @@ IglooSmartHome/Client/igloo-smarthome-app/igloo-smarthome-app-win32-x64/**
 IglooSmartHome/Client/CordovaMobileApp/platforms/**
 IglooSmartHome/Client/CordovaMobileApp/www/**
 IglooSmartHome/Client/CordovaMobileApp/plugins/**
+IglooSmartHome/Client/CordovaMobileApp/.gradle/**
