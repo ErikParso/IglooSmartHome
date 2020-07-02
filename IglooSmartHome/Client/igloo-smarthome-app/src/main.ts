@@ -4,12 +4,16 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+declare var cordova: any;
+
+(window as any).handleOpenURL = (url) => {
+  const event = new CustomEvent('urlOpen', { detail: url });
+  window.dispatchEvent(event);
+}
+
 if (environment.production) {
   enableProdMode();
 }
-
-// platformBrowserDynamic().bootstrapModule(AppModule)
-//   .catch(err => console.error(err));
 
 let onDeviceReady = () => {
   platformBrowserDynamic().bootstrapModule(AppModule);
