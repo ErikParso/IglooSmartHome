@@ -7,10 +7,10 @@ import { LogLevel } from 'angular-auth-oidc-client';
 export const environment = {
   production: false,
   oidcClient: {
-    identityServerUrl: 'http://localhost:5000',
+    identityServerUrl: 'https://igloo-identityserver-app.azurewebsites.net',
     logLevel: LogLevel.Debug,
   },
-  smartHomeApiUrl: 'http://localhost:5001'
+  smartHomeApiUrl: 'http://localhost:5000'
 };
 
 /*

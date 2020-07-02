@@ -15,12 +15,13 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
       oidcConfigService.withConfig({
           stsServer: environment.oidcClient.identityServerUrl,
-          redirectUrl: `${window.location.origin}/smarthome`,
-          postLogoutRedirectUri: `${window.location.origin}/smarthome`,
+          redirectUrl: "igloosmarthomeapp://",
+          postLogoutRedirectUri: `igloosmarthomeapp://`,
           clientId: 'iglooSmartHomeClient',
           scope: 'openid profile email iglooSmartHomeApi',
           responseType: 'code',
           logLevel: environment.oidcClient.logLevel,
+          
       });
 }
 
@@ -49,7 +50,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private oidcSecurityService: OidcSecurityService) {
+  constructor() {
 
   }
 }

@@ -7,6 +7,7 @@
     "start": "ng serve -o --watch",
     "build": "ng build",
     "build-win32": "tsc main.ts && ng build --base-href ./ && electron-packager . --platform=win32",
+    "build-mobile": "ng build --prod --base-href . --output-path ../CordovaMobileApp/www/",
     "electron": "tsc main.ts && ng build --base-href ./ && electron .",
     "test": "ng test",
     "lint": "ng lint",

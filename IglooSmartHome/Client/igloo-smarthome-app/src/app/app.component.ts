@@ -12,6 +12,7 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 })
 export class AppComponent {
   public isAuthenticated$: Observable<boolean>;
+  public location = window.location.href;
 
   constructor(private store: Store<reducer.AppState>, private oidcSecurityService: OidcSecurityService) {
 

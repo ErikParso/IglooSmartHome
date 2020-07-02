@@ -16,11 +16,11 @@ export class AppEffects {
         : actions.authenticateFailed())))
   ))
 
-  authenticateSucess$ = createEffect(() => this.actions$.pipe(
-    ofType(actions.authenticateSuccess),
-    mergeMap(() => this.smarthomeApiService.getUserInfo()
-      .pipe(map(userInfo => actions.setUserInfo({ userInfo }))))
-  ))
+  // authenticateSucess$ = createEffect(() => this.actions$.pipe(
+  //   ofType(actions.authenticateSuccess),
+  //   mergeMap(() => this.smarthomeApiService.getUserInfo()
+  //     .pipe(map(userInfo => actions.setUserInfo({ userInfo }))))
+  // ))
 
   constructor(
     private actions$: Actions,
