@@ -1,11 +1,29 @@
-<div *ngIf="!user">
-    <button (click)="login()">Login</button>
-</div>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="over">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
 
-<div *ngIf="user">
-    {{user | json}}
-    <button (click)="logout()">Logout</button>
-</div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </mat-sidenav>
 
-<button routerLink="/smarthome">go to smarthome component</button>
-<router-outlet></router-outlet>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <button mat-icon-button (click)="sidenav.toggle()" class="example-icon" aria-label="Example icon-button with menu icon">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <span>Igloo Smarthome</span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <div *ngIf="!user">
+            <button (click)="login()">Login</button>
+        </div>
+        <div *ngIf="user">
+            {{user | json}}
+            <button (click)="logout()">Logout</button>
+        </div>
+        <button routerLink="/smarthome">go to smarthome component</button>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

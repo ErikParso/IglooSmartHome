@@ -11,4 +11,5 @@ if (environment.production) {
 let onDeviceReady = () => {
   platformBrowserDynamic().bootstrapModule(AppModule);
 };
+
 document.addEventListener('deviceready', onDeviceReady, false);
