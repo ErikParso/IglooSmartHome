@@ -8,22 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './reactive-state/app.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthModule, LogLevel, OidcConfigService, OidcSecurityService } from 'angular-auth-oidc-client';
 import { environment } from 'src/environments/environment';
-
-export function configureAuth(oidcConfigService: OidcConfigService) {
-  return () =>
-      oidcConfigService.withConfig({
-          stsServer: environment.oidcClient.identityServerUrl,
-          redirectUrl: "igloosmarthomeapp://",
-          postLogoutRedirectUri: `igloosmarthomeapp://`,
-          clientId: 'iglooSmartHomeClient',
-          scope: 'openid profile email iglooSmartHomeApi',
-          responseType: 'code',
-          logLevel: environment.oidcClient.logLevel,
-          
-      });
-}
 
 @NgModule({
   declarations: [
@@ -33,19 +18,9 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    AuthModule.forRoot(),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument()
-  ],
-  providers: [
-    OidcConfigService,
-        {
-            provide: APP_INITIALIZER,
-            useFactory: configureAuth,
-            deps: [OidcConfigService],
-            multi: true,
-        },
   ],
   bootstrap: [AppComponent]
 })

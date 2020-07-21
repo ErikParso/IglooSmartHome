@@ -1,10 +1,6 @@
 import { Component, NgZone } from '@angular/core';
+import { User, UserManager, UserManagerSettings } from 'oidc-client';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import * as reducer from './reactive-state/app.reducer';
-import * as actions from './reactive-state/app.actions';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { UserManager, UserManagerSettings, User } from 'oidc-client';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -30,16 +26,11 @@ export class AppComponent {
   public isAuthenticated$: Observable<boolean>;
   public user: User;
 
-  constructor(
-    private zone: NgZone,
-    private store: Store<reducer.AppState>,
-    private oidcSecurityService: OidcSecurityService) {
-
+  constructor(private zone: NgZone) {
     this.userManager = new UserManager(this.config);
   }
 
   ngOnInit(): void {
-    console.log("AppComponent init, adding url handler");
     window.addEventListener("urlOpen", (e: CustomEvent) => {
       var search = new URL(e.detail).searchParams;
       if (search.has("code"))
@@ -47,12 +38,7 @@ export class AppComponent {
           .then(user => this.zone.run(() => this.user = user));
       else
         this.userManager.signoutRedirectCallback(e.detail)
-          .then(response => {
-            console.log("signout callback response", response);
-            this.userManager.getUser()
-              .then(user => console.log("after logout callback user", user));
-              this.zone.run(() => this.user = null);
-          })
+          .then(response => this.zone.run(() => this.user = null));
     })
   }
 
