@@ -1,9 +1,11 @@
-This is app component.
-
-<div *ngIf="isAuthenticated$ | async">
-    <button (click)="logout()">Logout</button>
-    <router-outlet></router-outlet>
-</div>
-<div *ngIf="!(isAuthenticated$ | async)">
+<div *ngIf="!user">
     <button (click)="login()">Login</button>
 </div>
+
+<div *ngIf="user">
+    {{user | json}}
+    <button (click)="logout()">Logout</button>
+</div>
+
+<button routerLink="/smarthome">go to smarthome component</button>
+<router-outlet></router-outlet>

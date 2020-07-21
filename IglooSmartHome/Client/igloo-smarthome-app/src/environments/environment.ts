@@ -2,15 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { LogLevel } from 'angular-auth-oidc-client';
-
 export const environment = {
   production: false,
   oidcClient: {
-    identityServerUrl: 'http://localhost:5000',
-    logLevel: LogLevel.Debug,
+    identityServerUrl: 'https://igloo-identityserver-app.azurewebsites.net',
   },
-  smartHomeApiUrl: 'http://localhost:5001'
+  smartHomeApiUrl: 'http://localhost:5000'
 };
 
 /*
