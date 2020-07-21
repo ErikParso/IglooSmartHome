@@ -1,8 +1,8 @@
-<mat-sidenav-container class="example-container">
+<mat-sidenav-container class="h-100">
     <mat-sidenav #sidenav mode="over">
         <mat-toolbar color="primary">
             <mat-toolbar-row>
-
+                <span *ngIf="user">{{user.profile.email}}</span>
             </mat-toolbar-row>
         </mat-toolbar>
     </mat-sidenav>
@@ -10,10 +10,10 @@
     <mat-sidenav-content>
         <mat-toolbar color="primary">
             <mat-toolbar-row>
-                <button mat-icon-button (click)="sidenav.toggle()" class="example-icon" aria-label="Example icon-button with menu icon">
+                <button mat-icon-button (click)="sidenav.toggle()" aria-label="Example icon-button with menu icon">
                     <mat-icon>menu</mat-icon>
                 </button>
-                <span>Igloo Smarthome</span>
+                <span class="pl-3">Igloo Smarthome</span>
             </mat-toolbar-row>
         </mat-toolbar>
         <div *ngIf="!user">
